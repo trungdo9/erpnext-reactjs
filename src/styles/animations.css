@@ -1,0 +1,2319 @@
+/**
+ * Essential Animations CSS
+ *
+ * Contains only essential keyframe animations for professional UI.
+ */
+
+/* ===========================================
+   Slide Animations
+   =========================================== */
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.animate-slide-up {
+    animation: slide-up 0.4s ease-out forwards;
+}
+
+@keyframes slide-down {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.animate-slide-down {
+    animation: slide-down 0.4s ease-out forwards;
+}
+
+@keyframes slide-left {
+    0% {
+        transform: translateX(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.animate-slide-left {
+    animation: slide-left 0.4s ease-out forwards;
+}
+
+@keyframes slide-right {
+    0% {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.animate-slide-right {
+    animation: slide-right 0.4s ease-out forwards;
+}
+
+/* ===========================================
+   Scale Animations
+   =========================================== */
+
+@keyframes scale-in {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.animate-scale-in {
+    animation: scale-in 0.3s ease-out forwards;
+}
+
+@keyframes scale-out {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.animate-scale-out {
+    animation: scale-out 0.3s ease-in forwards;
+}
+
+/* ===========================================
+   Shimmer & Skeleton
+   =========================================== */
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.skeleton-shimmer {
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.06) 25%,
+        rgba(0, 0, 0, 0.1) 50%,
+        rgba(0, 0, 0, 0.06) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.dark .skeleton-shimmer {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.06) 25%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.06) 75%
+    );
+    background-size: 200% 100%;
+}
+
+/* ===========================================
+   Shake Animation
+   =========================================== */
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+.animate-shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* ===========================================
+   Loading Dots Animation
+   =========================================== */
+
+@keyframes loading-dots {
+    0%, 80%, 100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    40% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.loading-dots span {
+    animation: loading-dots 1.4s ease-in-out infinite both;
+}
+
+.loading-dots span:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.loading-dots span:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+/* ===========================================
+   Border Radius Inheritance
+   =========================================== */
+
+.rounded-inherit {
+    border-radius: inherit;
+}
+
+/* ===========================================
+   Aurora Background (Login-style)
+   =========================================== */
+
+@keyframes aurora1 {
+    0%, 100% { transform: translateX(0%) scaleY(1); opacity: 0.6; }
+    25% { transform: translateX(8%) scaleY(1.3); opacity: 0.9; }
+    50% { transform: translateX(-5%) scaleY(0.8); opacity: 0.5; }
+    75% { transform: translateX(10%) scaleY(1.1); opacity: 0.7; }
+}
+
+@keyframes aurora2 {
+    0%, 100% { transform: translateX(0%) scaleY(1); opacity: 0.4; }
+    33% { transform: translateX(-12%) scaleY(1.4); opacity: 0.7; }
+    66% { transform: translateX(6%) scaleY(0.7); opacity: 0.5; }
+}
+
+@keyframes aurora3 {
+    0%, 100% { transform: translateX(0%) scaleY(1); opacity: 0.3; }
+    50% { transform: translateX(15%) scaleY(1.6); opacity: 0.6; }
+}
+
+/* ===========================================
+   Login/Landing Page Animations
+   =========================================== */
+
+@property --ba {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+
+.animated-border-glass {
+    --ba: 0deg;
+    animation: borderSpin 6s linear infinite;
+}
+
+.lp-glass-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(76, 175, 80, 0.1);
+    transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.dark .lp-glass-card {
+    background: rgba(12, 30, 18, 0.4);
+    border-color: rgba(76, 175, 80, 0.08);
+}
+
+.lp-glass-card:hover {
+    border-color: rgba(76, 175, 80, 0.25);
+    background: rgba(255, 255, 255, 0.75);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(76, 175, 80, 0.06), 0 0 0 1px rgba(76, 175, 80, 0.05);
+}
+.dark .lp-glass-card:hover {
+    border-color: rgba(76, 175, 80, 0.22);
+    background: rgba(12, 30, 18, 0.55);
+    box-shadow: 0 8px 32px rgba(76, 175, 80, 0.08), 0 0 0 1px rgba(76, 175, 80, 0.05);
+}
+
+@keyframes borderSpin {
+    to { --ba: 360deg; }
+}
+
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes wordReveal {
+    from { opacity: 0; transform: translateY(12px); filter: blur(3px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes kenBurns0 {
+    from { transform: scale(1.08) translate(0%, 0%); }
+    to { transform: scale(1.0) translate(-2%, -1%); }
+}
+
+@keyframes kenBurns1 {
+    from { transform: scale(1.0) translate(2%, 1%); }
+    to { transform: scale(1.1) translate(-1%, -2%); }
+}
+
+@keyframes kenBurns2 {
+    from { transform: scale(1.05) translate(-2%, 1%); }
+    to { transform: scale(1.0) translate(2%, -1%); }
+}
+
+@keyframes kenBurns3 {
+    from { transform: scale(1.0) translate(0%, -2%); }
+    to { transform: scale(1.08) translate(-2%, 2%); }
+}
+
+@keyframes meshBlob1 {
+    0%, 100% { transform: translate(0%, 0%) scale(1); }
+    33% { transform: translate(15%, -10%) scale(1.15); }
+    66% { transform: translate(-8%, 12%) scale(0.9); }
+}
+
+@keyframes meshBlob2 {
+    0%, 100% { transform: translate(0%, 0%) scale(1); }
+    33% { transform: translate(-20%, 8%) scale(0.85); }
+    66% { transform: translate(10%, -15%) scale(1.2); }
+}
+
+@keyframes btnGlow {
+    0%, 100% { box-shadow: 0 4px 16px rgba(46, 125, 50, 0.3); }
+    50% { box-shadow: 0 4px 28px rgba(76, 175, 80, 0.5), 0 0 0 4px rgba(76, 175, 80, 0.08); }
+}
+
+@keyframes btnGradient {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+@keyframes shimmerSweep {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+}
+
+@keyframes scrollBounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(6px); }
+    60% { transform: translateY(3px); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.15), 0 0 20px rgba(76, 175, 80, 0.3); }
+    50% { box-shadow: 0 0 0 8px rgba(76, 175, 80, 0.08), 0 0 30px rgba(76, 175, 80, 0.5); }
+}
+
+/* ===========================================
+   Dashboard Landing Page Shimmer
+   =========================================== */
+
+@keyframes lp-shimmer {
+    0% { background-position: 0% center; }
+    100% { background-position: 300% center; }
+}
+
+/* ===========================================
+   Contact Bar Glow Effect
+   =========================================== */
+
+@keyframes contactBarGlow {
+    0%, 100% { box-shadow: inset 0 -1px 0 rgba(255,152,0,0.3); }
+    50% { box-shadow: inset 0 -1px 0 rgba(255,152,0,0.6); }
+}
+
+/* ===========================================
+   Hero Text Box Entrance
+   =========================================== */
+
+@keyframes heroBoxSlideIn {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* ===========================================
+   Business Card Image Zoom on Hover
+   =========================================== */
+
+.biz-card-img {
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+}
+
+.biz-card:hover .biz-card-img {
+    transform: scale(1.08);
+    filter: brightness(1.1);
+}
+
+/* ===========================================
+   Partner Logo Hover Glow
+   =========================================== */
+
+.partner-badge {
+    transition: all 0.3s ease;
+}
+
+.partner-badge:hover {
+    background: rgba(255,255,255,0.08) !important;
+    border-color: rgba(46,125,50,0.3) !important;
+    box-shadow: 0 4px 20px rgba(46,125,50,0.15);
+    transform: translateY(-2px);
+}
+
+/* ===========================================
+   Navbar Contact Bar Scroll Transition
+   =========================================== */
+
+.nav-contact-bar {
+    transition: height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+    overflow: hidden;
+}
+
+.nav-contact-bar.scrolled {
+    height: 0;
+    opacity: 0;
+    padding: 0;
+}
+
+/* ===========================================
+   About Card Light-mode Hover Lift
+   =========================================== */
+
+.about-card-light:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(46,125,50,0.12), 0 2px 8px rgba(0,0,0,0.04);
+    border-color: rgba(46,125,50,0.2) !important;
+}
+
+/* ===========================================
+   Login Modal Entrance
+   =========================================== */
+
+@keyframes modalEntrance {
+    from { opacity: 0; transform: scale(0.95) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes gradientShimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.gradient-text-premium {
+    position: relative;
+    transition: filter 0.3s ease;
+}
+
+.gradient-text-premium::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: inherit;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: blur(12px);
+    opacity: 0.4;
+    z-index: -1;
+    animation: inherit;
+    background-size: inherit;
+}
+
+/* ===========================================
+   Floating Elements Animation
+   =========================================== */
+
+@keyframes floatY {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* ===========================================
+   Stats Counter Glow
+   =========================================== */
+
+@keyframes statGlow {
+    0%, 100% { text-shadow: 0 0 10px rgba(46,125,50,0.3); }
+    50% { text-shadow: 0 0 20px rgba(46,125,50,0.5); }
+}
+
+/* ===========================================
+   Hero Float — subtle up/down for hero content
+   =========================================== */
+
+@keyframes heroFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+/* ===========================================
+   Slide Progress Bar — fills over AUTO_INTERVAL (7s)
+   =========================================== */
+
+@keyframes slideProgress {
+    from { width: 0%; }
+    to { width: 100%; }
+}
+
+/* ===========================================
+   Number Glow — subtle text-shadow pulse on stat numbers
+   =========================================== */
+
+@keyframes numberGlow {
+    0%, 100% { text-shadow: 0 0 8px rgba(46,125,50,0.2), 0 0 20px rgba(46,125,50,0.1); }
+    50% { text-shadow: 0 0 14px rgba(46,125,50,0.4), 0 0 30px rgba(46,125,50,0.2); }
+}
+
+/* ===========================================
+   Gradient Mesh Overlay — slow color shift for hero
+   =========================================== */
+
+@keyframes gradientMeshShift {
+    0% { background-position: 0% 0%; opacity: 0.25; }
+    25% { background-position: 100% 50%; opacity: 0.3; }
+    50% { background-position: 50% 100%; opacity: 0.2; }
+    75% { background-position: 0% 50%; opacity: 0.35; }
+    100% { background-position: 0% 0%; opacity: 0.25; }
+}
+
+/* ===========================================
+   Page Entrance — cinematic reveal sequence
+   =========================================== */
+
+@keyframes navSlideDown {
+    from { opacity: 0; transform: translateY(-100%); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroContentReveal {
+    from { opacity: 0; transform: translateY(30px) scale(0.97); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+@keyframes logoFadeIn {
+    from { opacity: 0; transform: scale(0.8); filter: blur(6px); }
+    to { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+
+/* ===========================================
+   Cinematic Slide Transition — scale crossfade
+   =========================================== */
+
+@keyframes slideExitScale {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(1.02); opacity: 0; }
+}
+
+/* ===========================================
+   Hero Floating Particles — subtle upward drift
+   =========================================== */
+
+@keyframes heroParticleFloat {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: var(--particle-opacity, 0.08);
+    }
+    90% {
+        opacity: var(--particle-opacity, 0.08);
+    }
+    100% {
+        transform: translateY(calc(-100vh - 20px)) translateX(var(--particle-drift, 20px));
+        opacity: 0;
+    }
+}
+
+/* ===========================================
+   Hero Glow Underline — pulse under GradientText
+   =========================================== */
+
+@keyframes glowUnderlinePulse {
+    0%, 100% {
+        opacity: 0.5;
+        background-size: 0% 2px;
+    }
+    30% {
+        opacity: 1;
+        background-size: 100% 2px;
+    }
+    70% {
+        opacity: 0.8;
+        background-size: 100% 2px;
+    }
+}
+
+@keyframes glowUnderlineShimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+/* ===========================================
+   Hero Slide Zoom Directions — alternating zoom
+   =========================================== */
+
+@keyframes heroSlideZoomIn {
+    from { transform: scale(0.96); }
+    to { transform: scale(1); }
+}
+
+@keyframes heroSlideZoomOut {
+    from { transform: scale(1.06); }
+    to { transform: scale(1); }
+}
+
+@keyframes slideEnterScale {
+    from { transform: scale(0.98); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* ===========================================================================
+   PREMIUM ANIMATIONS — Motion Design Upgrade
+   Added for Login.jsx and Landing Page enhancements
+   =========================================================================== */
+
+/* ===========================================
+   1. Premium Page Entrance
+   =========================================== */
+
+@keyframes pageReveal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ===========================================
+   2. Hero Enhancements
+   =========================================== */
+
+@keyframes heroGlowPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+/* ===========================================
+   3. Card & Interaction Effects — Shine Sweep
+   =========================================== */
+
+@keyframes cardShine {
+    from { left: -100%; }
+    to { left: 200%; }
+}
+
+.card-shine-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-shine-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    transform: skewX(-15deg);
+    transition: none;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.card-shine-effect:hover::before {
+    animation: cardShine 0.8s ease forwards;
+}
+
+/* ===========================================
+   4. Partner Logo Showcase — Premium Infinite Marquee
+   =========================================== */
+
+@keyframes marqueeLeft {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+}
+
+/* Track base */
+.marquee-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+}
+
+.marquee-track--left {
+    animation: marqueeLeft 40s linear infinite;
+}
+
+.marquee-track--right {
+    animation: marqueeRight 40s linear infinite;
+}
+
+/* Pause all tracks on wrapper hover */
+.marquee-wrapper:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+/* Fade-edge mask on the marquee container */
+.marquee-fade-mask {
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 7%,
+        black 93%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 7%,
+        black 93%,
+        transparent 100%
+    );
+}
+
+/* Individual Logo Card — Premium */
+.partner-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 190px;
+    height: 88px;
+    margin: 0 10px;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: default;
+}
+
+/* Gradient border glow — hidden by default, revealed on hover */
+.partner-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 1.5px;
+    background: linear-gradient(135deg, #1a365d, #60a5fa, #ffd700, #ff9800, #1a365d);
+    background-size: 300% 300%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    animation: partnerBorderShift 4s ease-in-out infinite;
+}
+
+/* Accent line at bottom */
+.partner-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 15%;
+    right: 15%;
+    height: 2.5px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #1a365d, #60a5fa, #ffd700, #ff9800);
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes partnerBorderShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.partner-card:hover {
+    transform: translateY(-5px) scale(1.03);
+}
+
+.partner-card:hover::before {
+    opacity: 1;
+}
+
+.partner-card:hover::after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+/* Light theme card — premium frosted glass */
+.partner-card--light {
+    background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(248,250,252,0.9));
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.03),
+        0 4px 12px rgba(46, 125, 50, 0.02),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.partner-card--light:hover {
+    background: linear-gradient(145deg, #ffffff, #f0fdf4);
+    border-color: transparent;
+    box-shadow:
+        0 12px 35px rgba(46, 125, 50, 0.12),
+        0 4px 12px rgba(0, 0, 0, 0.04),
+        0 0 0 1px rgba(46, 125, 50, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* Dark theme card — glass morphism */
+.partner-card--dark {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.partner-card--dark:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: transparent;
+    box-shadow:
+        0 12px 35px rgba(46, 125, 50, 0.15),
+        0 0 0 1px rgba(46, 125, 50, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Logo Image */
+
+/* Light mode: grayscale muted -> full color on hover */
+.partner-card--light .partner-logo-img {
+    filter: grayscale(0.3) opacity(0.75);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.partner-card--light:hover .partner-logo-img {
+    filter: grayscale(0) opacity(1) saturate(1.15) contrast(1.05);
+    transform: scale(1.05);
+}
+
+/* Dark mode: muted -> vivid on hover */
+.partner-card--dark .partner-logo-img {
+    filter: brightness(1.1) opacity(0.65) grayscale(0.2);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.partner-card--dark:hover .partner-logo-img {
+    filter: brightness(1.1) opacity(1) grayscale(0);
+    transform: scale(1.05);
+}
+
+/* Section heading — premium accent */
+.partner-heading-accent {
+    position: relative;
+    display: inline-block;
+}
+
+.partner-heading-accent::before {
+    content: '';
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3.5px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #1a365d, #60a5fa, #ffd700, #ff9800);
+    background-size: 200% 100%;
+    animation: partnerAccentShift 3s ease-in-out infinite;
+}
+
+@keyframes partnerAccentShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* ===========================================
+   5. Scroll Progress Bar
+   =========================================== */
+
+.scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #1a365d, #60a5fa, #ff9800);
+    z-index: 100;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 8px rgba(46,125,50,0.4);
+}
+
+/* ===========================================
+   6. Number Glow for Stats
+   =========================================== */
+
+@keyframes numberPulseGlow {
+    0%, 100% { text-shadow: 0 0 8px rgba(46,125,50,0.2); }
+    50% { text-shadow: 0 0 20px rgba(46,125,50,0.4), 0 0 40px rgba(46,125,50,0.1); }
+}
+
+.stat-number-glow {
+    animation: numberPulseGlow 3s ease-in-out infinite;
+}
+
+/* ===========================================
+   7. Premium Button Effects
+   =========================================== */
+
+/* Magnetic button effect on hover */
+.btn-magnetic {
+    transition: transform 0.2s ease;
+}
+
+/* CTA pulse ring */
+@keyframes ctaPulse {
+    0% { box-shadow: 0 0 0 0 rgba(46,125,50,0.4); }
+    70% { box-shadow: 0 0 0 12px rgba(46,125,50,0); }
+    100% { box-shadow: 0 0 0 0 rgba(46,125,50,0); }
+}
+
+.cta-pulse {
+    animation: ctaPulse 2s ease-in-out infinite;
+}
+
+/* ===========================================
+   8. Section Reveal Animation — Staggered Grid
+   =========================================== */
+
+@keyframes gridItemReveal {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.grid-reveal-item {
+    animation: gridItemReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+/* ===========================================
+   9. Back to Top Button
+   =========================================== */
+
+@keyframes bounceUp {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+.back-to-top {
+    transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+    animation: bounceUp 1s ease infinite;
+    box-shadow: 0 4px 20px rgba(46,125,50,0.3);
+}
+
+/* ===========================================
+   10. Typing Cursor Blink (Hero Text Flair)
+   =========================================== */
+
+@keyframes blinkCursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+/* ===========================================================================
+   VIDEO HERO SECTION — Premium Cinematic Animations
+   Corporate landing page video section
+   =========================================================================== */
+
+/* ===========================================
+   1. Video Section Entrance — cinematic reveal
+   =========================================== */
+
+@keyframes videoReveal {
+    from {
+        transform: scale(1.05);
+        opacity: 0;
+        filter: blur(8px);
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+.animate-video-reveal {
+    animation: videoReveal 1.2s ease-out forwards;
+}
+
+/* ===========================================
+   2. Cinematic Zoom — slow Ken Burns for video bg
+   =========================================== */
+
+@keyframes cinematicZoom {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.08);
+    }
+}
+
+.animate-cinematic-zoom {
+    animation: cinematicZoom 20s ease-in-out infinite alternate;
+}
+
+/* ===========================================
+   3. Text Reveal Up — clip-path masked entrance
+   =========================================== */
+
+@keyframes textRevealUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+        clip-path: inset(100% 0 0 0);
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+        clip-path: inset(0);
+    }
+}
+
+.animate-text-reveal-up {
+    animation: textRevealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+/* ===========================================
+   4. Video Pulse Glow — "Watch Video" button
+   =========================================== */
+
+@keyframes videoPulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(76, 175, 80, 0.6);
+    }
+}
+
+.animate-video-pulse-glow {
+    animation: videoPulseGlow 2.5s ease-in-out infinite;
+}
+
+/* ===========================================
+   5. Lightbox Open — modal entrance
+   =========================================== */
+
+@keyframes lightboxOpen {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.animate-lightbox-open {
+    animation: lightboxOpen 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ===========================================
+   6. Play Button Pulse Ring — expanding ring
+   =========================================== */
+
+@keyframes playBtnPulse {
+    from {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    to {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+.animate-play-btn-pulse {
+    animation: playBtnPulse 2.5s ease-out infinite;
+}
+
+/* ===========================================
+   7. Stat Count Reveal — counter entrance
+   =========================================== */
+
+@keyframes statCountReveal {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.animate-stat-count-reveal {
+    animation: statCountReveal 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+/* ===========================================
+   8. Shimmer Wave — premium text shimmer
+   =========================================== */
+
+@keyframes shimmerWave {
+    from {
+        background-position: -200% center;
+    }
+    to {
+        background-position: 200% center;
+    }
+}
+
+.animate-shimmer-wave {
+    background-size: 200% auto;
+    animation: shimmerWave 3s linear infinite;
+}
+
+/* ===========================================
+   Video Hero Utility Classes
+   =========================================== */
+
+.video-hero-overlay {
+    background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0.7) 100%);
+}
+
+.video-lightbox-backdrop {
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.video-frame-glow {
+    box-shadow: 0 0 60px rgba(76,175,80,0.15), 0 8px 32px rgba(0,0,0,0.4);
+}
+
+
+/* ===========================================================================
+   PREMIUM LANDING PAGE ANIMATIONS — World-Class Motion Design
+   CSS-only animations for corporate landing pages (Apple/Tesla/LVMH level)
+   Performance: transform + opacity only, GPU-accelerated
+   =========================================================================== */
+
+
+/* ===========================================================================
+   1. FLOATING AMBIENT PARTICLES
+   Subtle floating dots/orbs for hero and section backgrounds.
+   Usage: .particle-field as container, .particle inside it.
+   =========================================================================== */
+
+@keyframes particleDriftUp {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(40px) scale(0.6);
+        opacity: 0;
+    }
+}
+
+@keyframes particleDriftDiag {
+    0% {
+        transform: translate(0, 0) scale(0.8);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.5;
+    }
+    85% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: translate(60px, -100vh) scale(1.1);
+        opacity: 0;
+    }
+}
+
+@keyframes particleFloat {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.4;
+    }
+    25% {
+        transform: translateY(-20px) translateX(10px);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(-35px) translateX(-8px);
+        opacity: 0.5;
+    }
+    75% {
+        transform: translateY(-15px) translateX(15px);
+        opacity: 0.6;
+    }
+}
+
+@keyframes particleOrbit {
+    0% {
+        transform: rotate(0deg) translateX(20px) rotate(0deg);
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: rotate(360deg) translateX(20px) rotate(-360deg);
+        opacity: 0.3;
+    }
+}
+
+/* Particle container — position relative, overflow hidden */
+.particle-field {
+    position: relative;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Base particle dot */
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    will-change: transform, opacity;
+    pointer-events: none;
+}
+
+/* Preset particle sizes */
+.particle--sm {
+    width: 2px;
+    height: 2px;
+    background: rgba(76, 175, 80, 0.4);
+}
+
+.particle--md {
+    width: 3px;
+    height: 3px;
+    background: rgba(76, 175, 80, 0.3);
+}
+
+.particle--lg {
+    width: 5px;
+    height: 5px;
+    background: rgba(76, 175, 80, 0.2);
+    box-shadow: 0 0 6px rgba(76, 175, 80, 0.15);
+}
+
+.particle--gold {
+    background: rgba(255, 215, 0, 0.25);
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.1);
+}
+
+/* Drift animations for particles at staggered speeds */
+.particle--drift-1 { animation: particleDriftUp 18s linear infinite; }
+.particle--drift-2 { animation: particleDriftUp 24s linear infinite; animation-delay: -4s; }
+.particle--drift-3 { animation: particleDriftDiag 22s linear infinite; animation-delay: -8s; }
+.particle--drift-4 { animation: particleDriftUp 28s linear infinite; animation-delay: -12s; }
+.particle--drift-5 { animation: particleDriftDiag 20s linear infinite; animation-delay: -6s; }
+
+/* Floating in place (for ambient dots that stay in region) */
+.particle--float-1 { animation: particleFloat 8s ease-in-out infinite; }
+.particle--float-2 { animation: particleFloat 12s ease-in-out infinite; animation-delay: -3s; }
+.particle--float-3 { animation: particleFloat 10s ease-in-out infinite; animation-delay: -7s; }
+
+/* Orbital motion */
+.particle--orbit-1 { animation: particleOrbit 20s linear infinite; }
+.particle--orbit-2 { animation: particleOrbit 30s linear infinite reverse; }
+
+.dark .particle--sm { background: rgba(76, 175, 80, 0.5); }
+.dark .particle--md { background: rgba(76, 175, 80, 0.4); }
+.dark .particle--lg { background: rgba(76, 175, 80, 0.3); box-shadow: 0 0 10px rgba(76, 175, 80, 0.2); }
+.dark .particle--gold { background: rgba(255, 215, 0, 0.35); box-shadow: 0 0 12px rgba(255, 215, 0, 0.15); }
+
+
+/* ===========================================================================
+   2. PREMIUM TEXT REVEAL ANIMATIONS
+   Split-character, blur-in, clip-reveal, typewriter effects.
+   Usage: Apply via inline styles or utility classes.
+   =========================================================================== */
+
+/* --- 2a. Character Blur-In — each char fades from blurred to sharp --- */
+@keyframes charBlurIn {
+    0% {
+        opacity: 0;
+        transform: translateY(8px) scale(0.95);
+        filter: blur(6px);
+    }
+    60% {
+        filter: blur(1px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+.animate-char-blur-in {
+    animation: charBlurIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+/* --- 2b. Text Clip Reveal — mask slides to reveal text --- */
+@keyframes textClipReveal {
+    0% {
+        clip-path: inset(0 100% 0 0);
+        opacity: 0.3;
+    }
+    100% {
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+    }
+}
+
+.animate-text-clip-reveal {
+    animation: textClipReveal 0.9s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    opacity: 0;
+}
+
+/* --- 2c. Text Slide Mask — bottom-to-top mask reveal --- */
+@keyframes textSlideMask {
+    0% {
+        clip-path: inset(100% 0 0 0);
+        transform: translateY(12px);
+    }
+    100% {
+        clip-path: inset(0 0 0 0);
+        transform: translateY(0);
+    }
+}
+
+.animate-text-slide-mask {
+    animation: textSlideMask 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* --- 2d. Typewriter Cursor --- */
+@keyframes typewriterCursor {
+    0%, 100% { border-right-color: rgba(76, 175, 80, 0.8); }
+    50% { border-right-color: transparent; }
+}
+
+.typewriter-cursor {
+    border-right: 2px solid rgba(76, 175, 80, 0.8);
+    animation: typewriterCursor 0.8s step-end infinite;
+    padding-right: 2px;
+}
+
+/* --- 2e. Word Cascade — staggered word entrance with elastic ease --- */
+@keyframes wordCascade {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) rotateX(45deg);
+    }
+    60% {
+        transform: translateY(-3px) rotateX(-5deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+    }
+}
+
+.animate-word-cascade {
+    animation: wordCascade 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    opacity: 0;
+    display: inline-block;
+    transform-origin: center bottom;
+}
+
+/* --- 2f. Gradient Text Reveal — text appears with traveling gradient --- */
+@keyframes gradientTextReveal {
+    0% {
+        background-size: 0% 100%;
+        opacity: 0.2;
+    }
+    100% {
+        background-size: 100% 100%;
+        opacity: 1;
+    }
+}
+
+.animate-gradient-text-reveal {
+    background: linear-gradient(90deg, #1a365d, #3b82f6, #ffd700) no-repeat left;
+    background-size: 0% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientTextReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* --- 2g. Line Draw Underline — for heading emphasis --- */
+@keyframes lineDrawUnderline {
+    0% {
+        transform: scaleX(0);
+        transform-origin: left center;
+    }
+    100% {
+        transform: scaleX(1);
+        transform-origin: left center;
+    }
+}
+
+.text-underline-draw::after {
+    content: '';
+    display: block;
+    height: 3px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #1a365d, #3b82f6, #ffd700);
+    transform: scaleX(0);
+    transform-origin: left center;
+    animation: lineDrawUnderline 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+
+/* ===========================================================================
+   3. COUNTER / NUMBER ANIMATIONS
+   Entrance effects for stat numbers and count-up sections.
+   =========================================================================== */
+
+/* --- 3a. Number Pop — elastic entrance for counter values --- */
+@keyframes numberPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(15px);
+    }
+    50% {
+        transform: scale(1.08) translateY(-2px);
+    }
+    70% {
+        transform: scale(0.97) translateY(1px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.animate-number-pop {
+    animation: numberPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    opacity: 0;
+}
+
+/* --- 3b. Stat Reveal — subtle slide + fade for stat blocks --- */
+@keyframes statBlockReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(24px) scale(0.96);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.animate-stat-reveal {
+    animation: statBlockReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+/* --- 3c. Counter Odometer Effect — digits roll in from below --- */
+@keyframes digitRollIn {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.digit-roll-container {
+    display: inline-flex;
+    overflow: hidden;
+    line-height: 1;
+}
+
+.digit-roll-char {
+    display: inline-block;
+    animation: digitRollIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+/* --- 3d. Stat Separator Line — grows between stat items --- */
+@keyframes statSeparatorGrow {
+    0% {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scaleY(1);
+        opacity: 0.3;
+    }
+}
+
+.stat-separator {
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(76, 175, 80, 0.4), transparent);
+    transform-origin: center top;
+    animation: statSeparatorGrow 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+    opacity: 0;
+}
+
+
+/* ===========================================================================
+   4. CARD HOVER EFFECTS
+   3D tilt, glass reflection sweep, premium hover states.
+   =========================================================================== */
+
+/* --- 4a. 3D Tilt Card — perspective-based hover tilt --- */
+.card-tilt-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+.card-tilt-3d:hover {
+    transform: perspective(800px) rotateX(2deg) rotateY(-3deg) translateZ(10px);
+}
+
+/* --- 4b. Glass Reflection Sweep — light streak on hover --- */
+@keyframes glassReflection {
+    0% {
+        transform: translateX(-100%) skewX(-15deg);
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(250%) skewX(-15deg);
+        opacity: 0;
+    }
+}
+
+.card-glass-sweep {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-glass-sweep::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(
+        105deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.06) 45%,
+        rgba(255, 255, 255, 0.12) 50%,
+        rgba(255, 255, 255, 0.06) 55%,
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0;
+}
+
+.card-glass-sweep:hover::after {
+    animation: glassReflection 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Light mode variant with stronger reflection */
+:root:not(.dark) .card-glass-sweep::after {
+    background: linear-gradient(
+        105deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.15) 45%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0.15) 55%,
+        transparent 70%
+    );
+}
+
+/* --- 4c. Card Lift — premium elevation change on hover --- */
+.card-lift {
+    transition:
+        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+.card-lift:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.08),
+        0 8px 16px rgba(0, 0, 0, 0.04),
+        0 0 0 1px rgba(76, 175, 80, 0.06);
+}
+
+.dark .card-lift:hover {
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 8px 16px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(76, 175, 80, 0.1);
+}
+
+/* --- 4d. Card Border Glow — animated border appears on hover --- */
+@keyframes cardBorderGlow {
+    0% { opacity: 0; background-position: 0% 50%; }
+    50% { opacity: 1; }
+    100% { opacity: 1; background-position: 100% 50%; }
+}
+
+.card-border-glow {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-border-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, #1a365d, #3b82f6, #ffd700, #ff9800, #1a365d);
+    background-size: 300% 300%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.card-border-glow:hover::before {
+    animation: cardBorderGlow 2s ease infinite alternate;
+}
+
+/* --- 4e. Card Spotlight — radial glow follows card center on hover --- */
+.card-spotlight {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-spotlight::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(76, 175, 80, 0.08) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.card-spotlight:hover::before {
+    opacity: 1;
+}
+
+.dark .card-spotlight::before {
+    background: radial-gradient(circle, rgba(76, 175, 80, 0.12) 0%, transparent 60%);
+}
+
+
+/* ===========================================================================
+   5. SECTION TRANSITIONS
+   Scroll-triggered reveal animations for content sections.
+   =========================================================================== */
+
+/* --- 5a. Curtain Reveal — top-to-bottom curtain wipe --- */
+@keyframes curtainReveal {
+    0% {
+        clip-path: inset(0 0 100% 0);
+        opacity: 0.5;
+    }
+    100% {
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+    }
+}
+
+.animate-curtain-reveal {
+    animation: curtainReveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    opacity: 0;
+}
+
+/* --- 5b. Stagger Children — parent triggers children stagger --- */
+.stagger-children > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+        opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stagger-children.is-visible > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger delays for up to 8 children */
+.stagger-children.is-visible > *:nth-child(1) { transition-delay: 0.05s; }
+.stagger-children.is-visible > *:nth-child(2) { transition-delay: 0.12s; }
+.stagger-children.is-visible > *:nth-child(3) { transition-delay: 0.19s; }
+.stagger-children.is-visible > *:nth-child(4) { transition-delay: 0.26s; }
+.stagger-children.is-visible > *:nth-child(5) { transition-delay: 0.33s; }
+.stagger-children.is-visible > *:nth-child(6) { transition-delay: 0.40s; }
+.stagger-children.is-visible > *:nth-child(7) { transition-delay: 0.47s; }
+.stagger-children.is-visible > *:nth-child(8) { transition-delay: 0.54s; }
+
+/* --- 5c. Section Slide In from Left --- */
+@keyframes sectionSlideLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-60px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-section-slide-left {
+    animation: sectionSlideLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+/* --- 5d. Section Slide In from Right --- */
+@keyframes sectionSlideRight {
+    0% {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-section-slide-right {
+    animation: sectionSlideRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+/* --- 5e. Section Scale-Up — zoom from center --- */
+@keyframes sectionScaleUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.88);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-section-scale-up {
+    animation: sectionScaleUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+/* --- 5f. Divider Line Grow — section divider draws itself --- */
+@keyframes dividerGrow {
+    0% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+.animate-divider-grow {
+    transform-origin: center;
+    animation: dividerGrow 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+
+/* ===========================================================================
+   6. MARQUEE IMPROVEMENTS
+   Smoother infinite scroll with GPU acceleration, pause on hover,
+   variable speeds, and better edge fading.
+   =========================================================================== */
+
+/* --- 6a. Smoother marquee with GPU-accelerated translate3d --- */
+@keyframes marqueeLeftSmooth {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+@keyframes marqueeRightSmooth {
+    0% {
+        transform: translate3d(-50%, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* GPU-accelerated track variants */
+.marquee-track--smooth-left {
+    animation: marqueeLeftSmooth 45s linear infinite;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.marquee-track--smooth-right {
+    animation: marqueeRightSmooth 45s linear infinite;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Speed variants */
+.marquee-track--slow { animation-duration: 60s; }
+.marquee-track--fast { animation-duration: 30s; }
+.marquee-track--crawl { animation-duration: 80s; }
+
+/* Smooth pause/resume on hover */
+.marquee-wrapper--smooth:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+/* Enhanced edge fade — wider gradient for luxury feel */
+.marquee-fade-mask--wide {
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 12%,
+        black 88%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 12%,
+        black 88%,
+        transparent 100%
+    );
+}
+
+/* Vertical marquee variant */
+@keyframes marqueeUpSmooth {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, -50%, 0);
+    }
+}
+
+.marquee-track--up {
+    animation: marqueeUpSmooth 30s linear infinite;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+
+/* ===========================================================================
+   7. GRADIENT ANIMATIONS
+   Moving gradient borders, shimmer effects, aurora border glows.
+   =========================================================================== */
+
+/* --- 7a. Animated Gradient Border — conic gradient rotation --- */
+@property --gradient-angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@keyframes gradientBorderRotate {
+    0% { --gradient-angle: 0deg; }
+    100% { --gradient-angle: 360deg; }
+}
+
+.gradient-border-animated {
+    position: relative;
+    border-radius: inherit;
+}
+
+.gradient-border-animated::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: conic-gradient(
+        from var(--gradient-angle),
+        #1a365d,
+        #3b82f6,
+        #ffd700,
+        #ff9800,
+        #3b82f6,
+        #1a365d
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: gradientBorderRotate 4s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* --- 7b. Shimmer Sweep Line — horizontal light sweep --- */
+@keyframes shimmerLine {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(200%);
+    }
+}
+
+.shimmer-line {
+    position: relative;
+    overflow: hidden;
+}
+
+.shimmer-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.04),
+        rgba(255, 255, 255, 0.08),
+        rgba(255, 255, 255, 0.04),
+        transparent
+    );
+    animation: shimmerLine 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+:root:not(.dark) .shimmer-line::after {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(76, 175, 80, 0.03),
+        rgba(76, 175, 80, 0.06),
+        rgba(76, 175, 80, 0.03),
+        transparent
+    );
+}
+
+/* --- 7c. Gradient Pulse — border color breathes --- */
+@keyframes gradientPulse {
+    0%, 100% {
+        border-color: rgba(76, 175, 80, 0.1);
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+    }
+    50% {
+        border-color: rgba(76, 175, 80, 0.3);
+        box-shadow: 0 0 20px rgba(76, 175, 80, 0.08);
+    }
+}
+
+.gradient-pulse-border {
+    animation: gradientPulse 4s ease-in-out infinite;
+}
+
+/* --- 7d. Flowing Gradient Background — slow color wave --- */
+@keyframes flowingGradient {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 50% 0%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 100%; }
+    100% { background-position: 0% 50%; }
+}
+
+.gradient-flow-bg {
+    background: linear-gradient(
+        -45deg,
+        rgba(27, 94, 32, 0.05),
+        rgba(76, 175, 80, 0.08),
+        rgba(255, 215, 0, 0.04),
+        rgba(255, 152, 0, 0.05),
+        rgba(76, 175, 80, 0.06)
+    );
+    background-size: 400% 400%;
+    animation: flowingGradient 15s ease infinite;
+}
+
+.dark .gradient-flow-bg {
+    background: linear-gradient(
+        -45deg,
+        rgba(27, 94, 32, 0.08),
+        rgba(76, 175, 80, 0.12),
+        rgba(255, 215, 0, 0.06),
+        rgba(255, 152, 0, 0.08),
+        rgba(76, 175, 80, 0.1)
+    );
+    background-size: 400% 400%;
+}
+
+/* --- 7e. Shimmer Text — premium text shimmer for headings --- */
+@keyframes textShimmer {
+    0% {
+        background-position: -200% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.text-shimmer {
+    background: linear-gradient(
+        90deg,
+        currentColor 0%,
+        currentColor 35%,
+        rgba(76, 175, 80, 0.7) 50%,
+        currentColor 65%,
+        currentColor 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textShimmer 4s linear infinite;
+}
+
+
+/* ===========================================================================
+   8. PARALLAX UTILITIES
+   CSS-only parallax helpers using perspective and translateZ.
+   Apply .parallax-container to the scrolling parent,
+   .parallax-layer--back / --mid / --front to child layers.
+   =========================================================================== */
+
+/* Parallax container — sets perspective for child layers */
+.parallax-container {
+    perspective: 1200px;
+    perspective-origin: center center;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Background layer — moves slower than scroll */
+.parallax-layer--back {
+    transform: translateZ(-300px) scale(1.25);
+    will-change: transform;
+}
+
+/* Midground layer — subtle parallax */
+.parallax-layer--mid {
+    transform: translateZ(-150px) scale(1.125);
+    will-change: transform;
+}
+
+/* Foreground layer — moves at normal speed */
+.parallax-layer--front {
+    transform: translateZ(0);
+}
+
+/* Sticky parallax section — for scroll-driven sections */
+.parallax-section {
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+/* Fixed background effect via CSS */
+.parallax-fixed-bg {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Disable parallax on mobile for performance */
+@media (max-width: 767px) {
+    .parallax-container {
+        perspective: none;
+    }
+    .parallax-layer--back,
+    .parallax-layer--mid {
+        transform: none;
+    }
+    .parallax-fixed-bg {
+        background-attachment: scroll;
+    }
+}
+
+
+/* ===========================================================================
+   PREMIUM LANDING PAGE — Section Enhancements
+   About, Business, Resources sections: 3D tilt, glass sweep, icon bounce
+   Performance: GPU-accelerated CSS transforms only
+   =========================================================================== */
+
+/* --- About Section: Stat card hover --- */
+.about-stat-card {
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s ease, border-color 0.5s ease;
+}
+.about-stat-card:hover {
+    transform: translateY(-2px) scale(1.03);
+}
+.about-stat-card:hover .about-stat-border {
+    opacity: 1 !important;
+}
+
+/* --- About Section: Highlight card glass sweep --- */
+@keyframes aboutCardShineSweep {
+    from { transform: translateX(-100%) skewX(-15deg); }
+    to   { transform: translateX(300%) skewX(-15deg); }
+}
+
+.about-card-shine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.06),
+        transparent
+    );
+    transform: skewX(-15deg);
+    pointer-events: none;
+    z-index: 10;
+}
+.about-highlight-card:hover .about-card-shine::before {
+    animation: aboutCardShineSweep 0.7s ease forwards;
+}
+
+/* --- About Section: Icon bounce on card hover --- */
+.about-highlight-card:hover .about-highlight-icon {
+    transform: scale(1.12) rotate(3deg);
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.15);
+}
+
+/* --- Business Cards: 3D tilt smooth return --- */
+.biz-tilt-card {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.5s ease;
+}
+.biz-tilt-card:hover {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(76, 175, 80, 0.08);
+}
+.dark .biz-tilt-card:hover {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(76, 175, 80, 0.12);
+}
+
+/* --- Business Cards: Glass reflection sweep --- */
+@keyframes bizCardShineSweep {
+    from { transform: translateX(-100%) skewX(-20deg); }
+    to   { transform: translateX(350%) skewX(-20deg); }
+}
+
+.biz-card-shine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 35%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.08),
+        rgba(255, 255, 255, 0.03),
+        transparent
+    );
+    transform: skewX(-20deg);
+    pointer-events: none;
+    z-index: 20;
+}
+.biz-tilt-card:hover .biz-card-shine::before {
+    animation: bizCardShineSweep 0.8s ease forwards;
+}
+
+/* --- Business Cards: Icon bounce on card hover --- */
+.biz-tilt-card:hover .biz-card-icon {
+    transform: scale(1.15) translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Resource Cards: 3D tilt smooth return --- */
+.resource-tilt-card {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.5s ease;
+}
+
+/* --- Resource Cards: Glass reflection sweep --- */
+@keyframes resourceCardShineSweep {
+    from { transform: translateX(-100%) skewX(-18deg); }
+    to   { transform: translateX(350%) skewX(-18deg); }
+}
+
+.resource-card-shine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.06),
+        transparent
+    );
+    transform: skewX(-18deg);
+    pointer-events: none;
+    z-index: 10;
+}
+.resource-tilt-card:hover .resource-card-shine::before {
+    animation: resourceCardShineSweep 0.7s ease forwards;
+}
+
+/* --- Resource Cards: Icon bounce on card hover --- */
+.resource-tilt-card:hover .resource-card-icon {
+    transform: scale(1.12) translateY(-3px);
+}
+
+/* --- Mobile: disable 3D tilt for touch devices --- */
+@media (max-width: 767px) {
+    .biz-tilt-card,
+    .resource-tilt-card {
+        transform: none !important;
+    }
+}
+@media (hover: none) {
+    .biz-tilt-card,
+    .resource-tilt-card {
+        transform: none !important;
+    }
+}
+
+
+/* ===========================================================================
+   9. REDUCED MOTION — Respect user accessibility preference
+   Disable all heavy animations when user prefers reduced motion.
+   =========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.2s !important;
+        scroll-behavior: auto !important;
+    }
+
+    .particle,
+    .marquee-track,
+    .marquee-track--smooth-left,
+    .marquee-track--smooth-right,
+    .marquee-track--up,
+    .gradient-border-animated::before,
+    .shimmer-line::after,
+    .card-glass-sweep::after,
+    .card-shine-effect::before,
+    .about-card-shine::before,
+    .biz-card-shine::before,
+    .resource-card-shine::before,
+    .animate-char-blur-in,
+    .animate-word-cascade,
+    .animate-gradient-text-reveal,
+    .text-shimmer,
+    .gradient-flow-bg,
+    .gradient-pulse-border,
+    .stat-separator,
+    .particle-field .particle {
+        animation: none !important;
+    }
+
+    .stagger-children > * {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .card-tilt-3d:hover {
+        transform: none;
+    }
+
+    .card-lift:hover {
+        transform: translateY(-2px);
+    }
+
+    .biz-tilt-card,
+    .resource-tilt-card {
+        transform: none !important;
+    }
+
+    .animate-curtain-reveal,
+    .animate-text-clip-reveal,
+    .animate-text-slide-mask,
+    .animate-section-slide-left,
+    .animate-section-slide-right,
+    .animate-section-scale-up,
+    .animate-number-pop,
+    .animate-stat-reveal,
+    .animate-divider-grow {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        clip-path: none !important;
+    }
+}

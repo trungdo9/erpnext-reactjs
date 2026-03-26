@@ -1,0 +1,1317 @@
+@import "tailwindcss";
+@import "./styles/animations.css";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* ═══ Steel ERP Industrial Blue Light Mode ═══ */
+  /* Clean off-white with blue tint */
+  --background: 210 15% 98%;
+  --background-gradient: hsl(210 15% 98%);
+
+  /* Deep steel text */
+  --foreground: 215 15% 12%;
+
+  /* Card - Clean white with subtle blue */
+  --card: 0 0% 100%;
+  --card-solid: 0 0% 100%;
+  --card-foreground: 215 15% 12%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 215 15% 12%;
+
+  /* Primary - Industrial Steel Blue */
+  --primary: 213 55% 35%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 210 10% 96%;
+  --secondary-foreground: 215 15% 12%;
+
+  --muted: 210 10% 96%;
+  --muted-foreground: 215 8% 45%;
+
+  --accent: 210 20% 96%;
+  --accent-foreground: 213 55% 32%;
+
+  --destructive: 0 75% 55%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders - Subtle blue-grey */
+  --border: 210 8% 90%;
+  --input: 210 8% 94%;
+  --ring: 213 55% 35%;
+
+  --radius: 0.75rem;
+
+  /* Status Colors */
+  --success: 160 50% 45%;
+  --success-foreground: 0 0% 100%;
+  --warning: 45 90% 48%;
+  --warning-foreground: 0 0% 100%;
+  --error: 0 75% 55%;
+  --error-foreground: 0 0% 100%;
+  --info: 210 80% 50%;
+  --info-foreground: 0 0% 100%;
+
+  /* Opacity System */
+  --opacity-subtle: 0.04;
+  --opacity-soft: 0.08;
+  --opacity-light: 0.12;
+  --opacity-medium: 0.2;
+  --opacity-high: 0.35;
+
+  /* Layout */
+  --navbar-height: 56px;
+  --sidebar-width: 260px;
+  --sidebar-width-collapsed: 60px;
+  --page-head-height: 50px;
+  --btn-height: 42px;
+  --input-height: 42px;
+
+  /* Shadow system */
+  --shadow-xs: 0px 1px 2px rgba(10, 15, 30, 0.04);
+  --shadow-sm: 0px 1px 3px rgba(10, 15, 30, 0.06);
+  --shadow-md: 0px 4px 8px -2px rgba(10, 15, 30, 0.08), 0px 2px 4px -2px rgba(10, 15, 30, 0.04);
+  --shadow-lg: 0px 12px 16px -4px rgba(10, 15, 30, 0.08), 0px 4px 6px -2px rgba(10, 15, 30, 0.04);
+  --shadow-card: 0 1px 3px rgba(10, 15, 30, 0.04), 0 8px 16px -4px rgba(10, 15, 30, 0.06);
+
+  /* Brand gradient system - Steel Blue */
+  --gradient-brand: linear-gradient(135deg, hsl(213, 55%, 35%), hsl(220, 45%, 30%));
+  --gradient-brand-hover: linear-gradient(135deg, hsl(213, 55%, 30%), hsl(220, 45%, 26%));
+
+  --gradient-sidebar: linear-gradient(180deg, hsl(210, 15%, 99%), hsl(210, 12%, 97%));
+  --gradient-header: linear-gradient(180deg, hsla(210, 15%, 99%, 0.8), hsla(210, 15%, 99%, 0.6));
+
+  --gradient-success: linear-gradient(135deg, hsl(160, 53%, 42%), hsl(170, 60%, 38%));
+  --gradient-danger: linear-gradient(135deg, hsl(2, 73%, 55%), hsl(350, 80%, 50%));
+  --gradient-warning: linear-gradient(135deg, hsl(45, 90%, 48%), hsl(40, 85%, 45%));
+  --gradient-info: linear-gradient(135deg, hsl(210, 80%, 50%), hsl(220, 70%, 45%));
+  --gradient-card-accent: linear-gradient(90deg, hsl(213, 55%, 35%), hsl(210, 80%, 50%));
+
+  /* Mesh Gradient - Steel Industrial (light mode) */
+  --gradient-mesh: radial-gradient(ellipse at 10% 40%, rgba(30, 58, 95, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 20%, rgba(59, 130, 246, 0.04) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 90%, rgba(30, 64, 120, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(30, 58, 95, 0.03) 0%, transparent 40%);
+
+  /* Glass morphism */
+  --glass-bg: hsla(0, 0%, 100%, 0.75);
+  --glass-blur: 20px;
+  --glass-border: 1px solid hsla(210, 20%, 90%, 0.5);
+  --glass-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.04);
+}
+
+.dark {
+  /* ═══ Steel ERP Dark Mode (Industrial Blue) ═══ */
+  --background: 215 20% 7%;
+  --background-gradient: hsl(215 20% 7%);
+
+  /* Soft white text */
+  --foreground: 210 15% 94%;
+
+  /* Card - Dark blue-tinted */
+  --card: 215 15% 10%;
+  --card-solid: 215 15% 10%;
+  --card-foreground: 210 15% 94%;
+
+  --popover: 215 15% 10%;
+  --popover-foreground: 210 15% 94%;
+
+  /* Primary - Bright Steel Blue (for contrast on dark) */
+  --primary: 213 60% 55%;
+  --primary-foreground: 215 20% 7%;
+
+  --secondary: 215 10% 16%;
+  --secondary-foreground: 210 15% 94%;
+
+  --muted: 215 10% 14%;
+  --muted-foreground: 210 10% 60%;
+
+  --accent: 215 10% 18%;
+  --accent-foreground: 213 60% 55%;
+
+  --destructive: 0 70% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders */
+  --border: 215 10% 18%;
+  --input: 215 10% 14%;
+  --ring: 213 60% 55%;
+
+  /* Status Colors - Dark Mode */
+  --success: 160 50% 50%;
+  --success-foreground: 0 0% 100%;
+  --warning: 45 90% 55%;
+  --warning-foreground: 0 0% 100%;
+  --error: 0 70% 60%;
+  --error-foreground: 0 0% 100%;
+  --info: 210 80% 60%;
+  --info-foreground: 0 0% 100%;
+
+  /* Opacity System */
+  --opacity-subtle: 0.06;
+  --opacity-soft: 0.12;
+  --opacity-light: 0.18;
+  --opacity-medium: 0.3;
+  --opacity-high: 0.5;
+
+  /* Shadow - Deep forest shadows */
+  --shadow-xs: 0px 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0px 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.3), 0px 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0px 12px 24px rgba(0, 0, 0, 0.3), 0px 4px 8px rgba(0, 0, 0, 0.2);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+  /* Brand gradients - Steel Blue */
+  --gradient-brand: linear-gradient(135deg, hsl(213, 60%, 55%), hsl(220, 50%, 48%));
+  --gradient-brand-hover: linear-gradient(135deg, hsl(213, 60%, 50%), hsl(220, 50%, 44%));
+
+  --gradient-sidebar: linear-gradient(180deg, hsl(215, 25%, 10%), hsl(218, 30%, 7%));
+  --gradient-header: linear-gradient(180deg, hsla(215, 25%, 10%, 0.85), hsla(215, 20%, 8%, 0.7));
+
+  --gradient-success: linear-gradient(135deg, hsl(160, 60%, 48%), hsl(170, 65%, 44%));
+  --gradient-danger: linear-gradient(135deg, hsl(2, 73%, 58%), hsl(350, 80%, 55%));
+  --gradient-warning: linear-gradient(135deg, hsl(45, 90%, 55%), hsl(40, 85%, 50%));
+  --gradient-info: linear-gradient(135deg, hsl(210, 80%, 60%), hsl(220, 70%, 55%));
+  --gradient-card-accent: linear-gradient(90deg, hsl(213, 60%, 55%), hsl(210, 80%, 60%));
+
+  /* Mesh Gradient - Steel Industrial (dark mode) */
+  --gradient-mesh: radial-gradient(ellipse 80% 70% at 0% 50%, rgba(30, 58, 95, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 100% 10%, rgba(59, 130, 246, 0.07) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba(30, 64, 120, 0.10) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 50% at 80% 60%, rgba(30, 58, 95, 0.12) 0%, transparent 45%);
+
+  /* Glass morphism - Steel Glass */
+  --glass-bg: hsla(215, 20%, 8%, 0.7);
+  --glass-blur: 20px;
+  --glass-border: 1px solid hsla(215, 15%, 25%, 0.4);
+  --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  /* Status Colors */
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+  --color-error: hsl(var(--error));
+  --color-error-foreground: hsl(var(--error-foreground));
+  --color-info: hsl(var(--info));
+  --color-info-foreground: hsl(var(--info-foreground));
+
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* Brand Steel Blue palette (matches --primary) */
+  --color-primary-50:  #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;  /* Core Blue */
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+}
+
+body {
+  background: hsl(var(--background));
+  background-image: var(--gradient-mesh);
+  color: var(--color-foreground);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* ============================================
+   UI/UX Enhancement - Animations & Utilities
+   ============================================ */
+
+/* Keyframe Animations */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-4px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Animation Utility Classes */
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+.animate-slide-down {
+  animation: slide-down 0.3s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.2s ease-out;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Shimmer Loading Effect */
+.shimmer {
+  background: linear-gradient(90deg,
+      hsl(var(--muted)) 25%,
+      hsl(var(--muted-foreground) / 0.1) 50%,
+      hsl(var(--muted)) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ============================================
+   STANDARDIZED UI UTILITY CLASSES
+   ============================================ */
+
+/* Standard Form Input Base */
+.input-base {
+  @apply w-full border border-input bg-background text-foreground;
+  @apply placeholder:text-muted-foreground;
+  @apply disabled:cursor-not-allowed disabled:opacity-50;
+  @apply transition-colors duration-200;
+}
+
+/* Standard Focus Ring - Use for all interactive elements */
+.focus-ring-standard {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-0;
+}
+
+/* Standard Focus Ring with Offset - Use for buttons */
+.focus-ring-offset {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+}
+
+/* Standard Input Sizes - Accessible touch targets */
+.input-sm {
+  @apply h-8 px-2 text-xs rounded-md;
+}
+
+.input-md {
+  @apply h-10 px-2 text-sm rounded-md;
+}
+
+.input-lg {
+  @apply h-12 px-3 text-sm rounded-lg;
+}
+
+/* Standard Label - Frappe compact */
+.label-standard {
+  @apply block text-xs font-medium text-muted-foreground mb-1;
+}
+
+/* Standard Helper/Error Text */
+.helper-text {
+  @apply text-xs text-muted-foreground mt-1;
+}
+
+.error-text {
+  @apply text-xs text-destructive mt-1;
+}
+
+/* Standard Transition Durations (specific properties for better performance) */
+.transition-fast {
+  @apply transition-[color,background-color,border-color,opacity] duration-150 ease-out;
+}
+
+.transition-normal {
+  @apply transition-[color,background-color,border-color,opacity] duration-200 ease-out;
+}
+
+.transition-slow {
+  @apply transition-[color,background-color,border-color,opacity] duration-300 ease-out;
+}
+
+/* ============================================
+   END STANDARDIZED UTILITY CLASSES
+   ============================================ */
+
+/* Enhanced Focus States */
+.focus-ring {
+  outline: none;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--primary));
+}
+
+/* Interactive Card States - Frappe subtle */
+.card-interactive {
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.card-interactive:hover {
+  box-shadow: var(--shadow-sm);
+  border-color: hsl(var(--border));
+}
+
+/* Table Row Hover - Frappe style */
+.table-row-interactive {
+  transition: background-color 0.15s ease;
+}
+
+.table-row-interactive:hover {
+  background-color: hsl(var(--muted));
+}
+
+.dark .table-row-interactive:hover {
+  background-color: hsl(var(--accent));
+}
+
+/* Native select dropdown dark mode */
+.dark select option {
+  background-color: hsl(150 20% 12%);
+  color: hsl(140 15% 94%);
+}
+
+/* Button Ripple Container */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, hsl(var(--primary-foreground) / 0.3) 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.4s, opacity 0.8s;
+}
+
+.btn-ripple:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
+
+/* Smooth Transitions (specific properties for better performance) */
+.transition-smooth {
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dropdown Animation */
+.dropdown-enter {
+  animation: scale-in 0.15s ease-out, slide-down 0.15s ease-out;
+  transform-origin: top;
+}
+
+/* Skeleton Base */
+.skeleton {
+  background-color: hsl(var(--muted));
+  border-radius: var(--radius);
+}
+
+.skeleton-text {
+  height: 1em;
+  border-radius: calc(var(--radius) / 2);
+}
+
+.skeleton-circle {
+  border-radius: 50%;
+}
+
+/* Status Indicator Pulse */
+.status-pulse {
+  position: relative;
+}
+
+.status-pulse::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: inherit;
+  animation: pulse-ring 2s ease-in-out infinite;
+  opacity: 0.4;
+}
+
+/* ============================================
+   ICON CONTAINERS & WIDGET STYLES
+   ============================================ */
+
+/* Icon Container - Colored backgrounds with consistent opacity */
+.icon-container {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Light mode icon containers - 15% opacity */
+.icon-container-emerald,
+.icon-container-green {
+  background: rgba(16, 185, 129, var(--opacity-light));
+  color: #10b981;
+}
+
+.icon-container-amber {
+  background: rgba(245, 158, 11, var(--opacity-light));
+  color: #f59e0b;
+}
+
+.icon-container-primary {
+  background: rgba(16, 185, 129, var(--opacity-light));
+  color: #10b981;
+}
+
+.icon-container-blue,
+.icon-container-info {
+  background: rgba(59, 130, 246, var(--opacity-light));
+  color: #3b82f6;
+}
+
+.icon-container-purple {
+  background: rgba(139, 92, 246, var(--opacity-light));
+  color: #8b5cf6;
+}
+
+.icon-container-cyan {
+  background: rgba(6, 182, 212, var(--opacity-light));
+  color: #06b6d4;
+}
+
+.icon-container-rose {
+  background: rgba(244, 63, 94, var(--opacity-light));
+  color: #f43f5e;
+}
+
+.icon-container-red,
+.icon-container-error {
+  background: rgba(239, 68, 68, var(--opacity-light));
+  color: #ef4444;
+}
+
+.icon-container-orange,
+.icon-container-warning {
+  background: rgba(249, 115, 22, var(--opacity-light));
+  color: #f97316;
+}
+
+.icon-container-teal {
+  background: rgba(20, 184, 166, var(--opacity-light));
+  color: #14b8a6;
+}
+
+.icon-container-indigo {
+  background: rgba(99, 102, 241, var(--opacity-light));
+  color: #6366f1;
+}
+
+.icon-container-lime {
+  background: rgba(132, 204, 22, var(--opacity-light));
+  color: #84cc16;
+}
+
+.icon-container-slate {
+  background: rgba(100, 116, 139, var(--opacity-light));
+  color: #64748b;
+}
+
+.icon-container-success {
+  background: rgba(34, 197, 94, var(--opacity-light));
+  color: #22c55e;
+}
+
+/* Dark mode: brighter text (400 shade) + opacity-light adapts via CSS variable */
+.dark .icon-container-emerald,
+.dark .icon-container-green {
+  background: rgba(16, 185, 129, var(--opacity-light));
+  color: #34d399;
+}
+
+.dark .icon-container-amber {
+  background: rgba(245, 158, 11, var(--opacity-light));
+  color: #fbbf24;
+}
+
+.dark .icon-container-primary {
+  background: rgba(16, 185, 129, var(--opacity-light));
+  color: #34d399;
+}
+
+.dark .icon-container-blue,
+.dark .icon-container-info {
+  background: rgba(59, 130, 246, var(--opacity-light));
+  color: #60a5fa;
+}
+
+.dark .icon-container-purple {
+  background: rgba(139, 92, 246, var(--opacity-light));
+  color: #a78bfa;
+}
+
+.dark .icon-container-cyan {
+  background: rgba(6, 182, 212, var(--opacity-light));
+  color: #22d3ee;
+}
+
+.dark .icon-container-rose {
+  background: rgba(244, 63, 94, var(--opacity-light));
+  color: #fb7185;
+}
+
+.dark .icon-container-red,
+.dark .icon-container-error {
+  background: rgba(239, 68, 68, var(--opacity-light));
+  color: #f87171;
+}
+
+.dark .icon-container-orange,
+.dark .icon-container-warning {
+  background: rgba(249, 115, 22, var(--opacity-light));
+  color: #fb923c;
+}
+
+.dark .icon-container-teal {
+  background: rgba(20, 184, 166, var(--opacity-light));
+  color: #2dd4bf;
+}
+
+.dark .icon-container-indigo {
+  background: rgba(99, 102, 241, var(--opacity-light));
+  color: #818cf8;
+}
+
+.dark .icon-container-lime {
+  background: rgba(132, 204, 22, var(--opacity-light));
+  color: #a3e635;
+}
+
+.dark .icon-container-slate {
+  background: rgba(100, 116, 139, var(--opacity-light));
+  color: #94a3b8;
+}
+
+.dark .icon-container-success {
+  background: rgba(34, 197, 94, var(--opacity-light));
+  color: #4ade80;
+}
+
+/* ============================================
+   GLOBAL CURSOR STYLES
+   ============================================ */
+
+/* Interactive elements that need pointer cursor */
+button,
+[role="button"],
+a,
+input[type="checkbox"],
+input[type="radio"],
+input[type="submit"],
+input[type="button"],
+select,
+label[for] {
+  cursor: pointer;
+}
+
+/* Dropdown/menu items */
+[role="option"],
+[role="menuitem"] {
+  cursor: pointer;
+}
+
+/* ============================================
+   DATE/TIME INPUT FIXES
+   Fix native date picker on mobile and desktop
+   ============================================ */
+
+/* Ensure date inputs are fully clickable */
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"] {
+  cursor: pointer;
+  position: relative;
+}
+
+/* WebKit calendar picker indicator - make it visible and styled */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  padding: 4px;
+  margin-right: -4px;
+  border-radius: 4px;
+  opacity: 0.6;
+  transition: opacity 0.15s, background-color 0.15s;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+  background-color: hsl(var(--primary) / 0.1);
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Dark mode - invert the icon colors */
+.dark input[type="date"]::-webkit-calendar-picker-indicator,
+.dark input[type="time"]::-webkit-calendar-picker-indicator,
+.dark input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.8);
+}
+
+/* iOS Safari specific fix - make tap targets larger */
+@supports (-webkit-touch-callout: none) {
+
+  input[type="date"],
+  input[type="time"],
+  input[type="datetime-local"] {
+    min-height: 44px;
+    /* iOS minimum tap target */
+  }
+
+  /* On iOS, make the whole input trigger the picker */
+  input[type="date"]::-webkit-calendar-picker-indicator,
+  input[type="time"]::-webkit-calendar-picker-indicator,
+  input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+    opacity: 0;
+  }
+}
+
+/* Remove native inner spin button for time inputs */
+input[type="time"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+/* Ensure disabled date inputs still show the value */
+input[type="date"]:disabled,
+input[type="time"]:disabled,
+input[type="datetime-local"]:disabled {
+  -webkit-text-fill-color: currentColor;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Firefox date input styling */
+input[type="date"]::-moz-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+/* ============================================
+   TOUCH TARGET OPTIMIZATION
+   Prevent 300ms click delay on mobile
+   ============================================ */
+button,
+a,
+[role="button"] {
+  touch-action: manipulation;
+}
+
+/* ============================================
+   PROFESSIONAL CARD UTILITIES
+   Linear.app / Vercel-inspired cards
+   ============================================ */
+
+/* Professional Card */
+.card-professional {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-card);
+}
+
+/* Subtle hover for interactive cards */
+.card-professional:hover {
+  box-shadow: var(--shadow-md);
+  border-color: hsl(var(--border));
+}
+
+/* ============================================
+   PREMIUM MICRO-INTERACTIONS
+   ============================================ */
+
+/* Interactive card with lift on hover */
+.card-interactive {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-interactive:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Subtle press effect for buttons */
+.btn-press:active {
+  transform: scale(0.98);
+}
+
+/* Smooth focus ring animation */
+.focus-ring-animated {
+  transition: box-shadow 0.15s ease;
+}
+
+.focus-ring-animated:focus-visible {
+  box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--primary));
+}
+
+/* Stagger animation for list items */
+.stagger-item {
+  animation: slide-up 0.3s ease-out forwards;
+  opacity: 0;
+}
+
+.stagger-item:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+.stagger-item:nth-child(2) {
+  animation-delay: 30ms;
+}
+
+.stagger-item:nth-child(3) {
+  animation-delay: 60ms;
+}
+
+.stagger-item:nth-child(4) {
+  animation-delay: 90ms;
+}
+
+.stagger-item:nth-child(5) {
+  animation-delay: 120ms;
+}
+
+.stagger-item:nth-child(6) {
+  animation-delay: 150ms;
+}
+
+.stagger-item:nth-child(7) {
+  animation-delay: 180ms;
+}
+
+.stagger-item:nth-child(8) {
+  animation-delay: 210ms;
+}
+
+.stagger-item:nth-child(9) {
+  animation-delay: 240ms;
+}
+
+.stagger-item:nth-child(10) {
+  animation-delay: 270ms;
+}
+
+/* Pulse dot for notifications/status */
+.pulse-dot {
+  position: relative;
+}
+
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: hsl(var(--primary));
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 hsla(var(--primary), 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 6px hsla(var(--primary), 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 hsla(var(--primary), 0);
+  }
+}
+
+/* Smooth underline for links */
+.link-underline {
+  text-decoration: none;
+  background-image: linear-gradient(hsl(var(--primary)), hsl(var(--primary)));
+  background-size: 0% 1.5px;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  transition: background-size 0.25s ease;
+}
+
+.link-underline:hover {
+  background-size: 100% 1.5px;
+}
+
+/* Number counter animation */
+@keyframes count-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-count {
+  animation: count-up 0.4s ease-out forwards;
+}
+
+/* Gradient border effect */
+.border-gradient {
+  position: relative;
+  border: none !important;
+}
+
+.border-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--gradient-brand);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ============================================
+   BRAND GRADIENT UTILITIES
+   Premium brand identity system
+   ============================================ */
+
+/* Brand gradient text */
+.text-gradient-brand {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Brand gradient background */
+.bg-gradient-brand {
+  background: var(--gradient-brand);
+}
+
+/* Sidebar gradient background */
+.bg-gradient-sidebar {
+  background: var(--gradient-sidebar);
+}
+
+/* Header gradient background */
+.bg-gradient-header {
+  background: var(--gradient-header);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+
+/* Mesh gradient background */
+.bg-gradient-mesh {
+  background-image: var(--gradient-mesh);
+}
+
+/* Success gradient background */
+.bg-gradient-success {
+  background: var(--gradient-success);
+}
+
+/* Danger gradient background */
+.bg-gradient-danger {
+  background: var(--gradient-danger);
+}
+
+/* Warning gradient background */
+.bg-gradient-warning {
+  background: var(--gradient-warning);
+}
+
+/* Info gradient background */
+.bg-gradient-info {
+  background: var(--gradient-info);
+}
+
+/* Glass morphism effect */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+/* Gradient hover for brand */
+.bg-gradient-brand-hover:hover {
+  background: var(--gradient-brand-hover);
+}
+
+/* ============================================
+   LANDING PAGE ANIMATIONS
+   ============================================ */
+@keyframes lp-bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+/* ============================================
+   iOS ZOOM PREVENTION
+   On iOS Safari, inputs with font-size < 16px
+   cause automatic zoom on focus. Force 16px on
+   mobile to prevent this.
+   ============================================ */
+@media screen and (max-width: 767px) {
+
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="date"],
+  input[type="time"],
+  input[type="datetime-local"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* ============================================
+   SCROLLBAR HIDE UTILITY
+   Used for horizontal-scroll toolbar containers
+   ============================================ */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ============================================
+   SAFE AREA INSETS (notched devices / fullscreen PWA)
+   ============================================ */
+@supports (padding: env(safe-area-inset-bottom)) {
+
+  /* Apply safe area padding to body for fullscreen mode */
+  body {
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+
+  /* Utility classes for individual edges */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  .pl-safe {
+    padding-left: env(safe-area-inset-left, 0px);
+  }
+
+  .pr-safe {
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+
+  /* Fixed/sticky elements need safe area margin */
+  .fixed-bottom-safe {
+    bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .fixed-top-safe {
+    top: env(safe-area-inset-top, 0px);
+  }
+}
+
+/* ============================================
+   MOBILE TOUCH TARGETS & CONTRAST
+   Ensure interactive elements are ≥ 44px and
+   improve colors for readability on mobile
+   ============================================ */
+@media screen and (max-width: 767px) {
+
+  /* Ensure all standalone buttons/links are at least 44px tap targets */
+  button:not([class*="p-0"]):not([class*="h-"]),
+  a[role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Improve muted text contrast on mobile (smaller screens need higher contrast) */
+  :root {
+    --muted-foreground: hsl(215 16% 40%);
+  }
+
+  .dark {
+    --muted-foreground: hsl(215 16% 62%);
+  }
+
+  /* Sidebar navigation items — bigger touch targets on mobile */
+  aside[aria-label="Navigation"] .mb-0\.5>div:first-child {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 15px;
+  }
+
+  aside[aria-label="Navigation"] .mb-0\.5>div:first-child .w-6 {
+    width: 28px;
+    height: 28px;
+  }
+
+  aside[aria-label="Navigation"] .mb-0\.5>div:first-child .h-3\.5 {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Landing Page Text Shimmer */
+@keyframes lp-text-shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ============================================
+   BRAND COLOR UTILITIES
+   Steel ERP Industrial identity colors
+   ============================================ */
+
+.text-brand-orange { color: #ff9800; }
+.bg-brand-orange { background-color: #ff9800; }
+.text-brand-gold { color: #ffd700; }
+.bg-brand-gold { background-color: #ffd700; }
+.text-brand-green { color: #1e3a5f; }
+.bg-brand-green { background-color: #1e3a5f; }
+.text-brand-green-light { color: #2c5282; }
+.bg-brand-green-light { background-color: #2c5282; }
+
+/* ============================================
+   LANDING PAGE THEME-AWARE BACKGROUNDS
+   ============================================ */
+.lp-hero-bg {
+  background: linear-gradient(160deg, hsl(210 28% 95%), hsl(210 18% 93%) 40%, hsl(210 12% 96%) 80%);
+}
+.dark .lp-hero-bg {
+  background: linear-gradient(160deg, #0c1628, #080e14 40%, #06060a 80%);
+}
+
+.lp-hero-glow {
+  background: radial-gradient(ellipse at 25% 50%, rgba(46,125,50,0.06), transparent 55%),
+              radial-gradient(ellipse at 75% 30%, rgba(255,215,0,0.03), transparent 50%),
+              radial-gradient(ellipse at 50% 80%, rgba(76,175,80,0.04), transparent 50%);
+}
+.dark .lp-hero-glow {
+  background: radial-gradient(ellipse at 25% 50%, rgba(46,125,50,0.18), transparent 55%),
+              radial-gradient(ellipse at 75% 30%, rgba(255,215,0,0.06), transparent 50%),
+              radial-gradient(ellipse at 50% 80%, rgba(76,175,80,0.08), transparent 50%);
+}
+
+.lp-section-a {
+  background: linear-gradient(180deg, hsl(140 12% 96%), hsl(140 22% 93%) 50%, hsl(140 12% 96%));
+}
+.dark .lp-section-a {
+  background: linear-gradient(180deg, #0a0a06, #0c2812 50%, #0a0a06);
+}
+
+.lp-section-b {
+  background: linear-gradient(180deg, hsl(140 12% 96%), hsl(140 18% 94%));
+}
+.dark .lp-section-b {
+  background: linear-gradient(180deg, #0a0a06, #081408);
+}
+
+/* ============================================
+   PREFERS-REDUCED-MOTION (WCAG 2.1)
+   Disable/reduce animations for users who
+   prefer reduced motion in OS settings.
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   GLOBAL FOCUS-VISIBLE (Keyboard Accessibility)
+   Consistent focus ring for keyboard navigation
+   ============================================ */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid rgba(76, 175, 80, 0.6);
+  outline-offset: 2px;
+}

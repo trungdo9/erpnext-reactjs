@@ -1,0 +1,8 @@
+dist
+dist-serve
+node_modules
+coverage
+playwright-report
+.husky
+*.min.js
+*.min.css

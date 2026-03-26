@@ -1,0 +1,67 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+*storybook.log
+storybook-static
+
+# Build artifacts
+dist-serve
+
+# Environment
+.env
+.env.*
+cookies.txt
+
+# Nginx installation (local only)
+nginx/
+
+# Windows reserved files
+nul
+
+# Temp files & one-off scripts
+tmp_*
+*.py
+C:*
+D:*
+
+# One-off / local files
+*.rar
+*.mp3
+*.bat
+banana-logo*
+check-charts.js
+loadtest.mjs
+nginx-security.conf
+
+# Auto-generated docs (not source of truth)
+A11Y_IMPLEMENTATION_CHECKLIST.md
+AI_SYSTEM_PROMPT_DATA.md
+COLOR_SYSTEM_REDESIGN.md
+CONTRIBUTING.md
+CHANGELOG.md
+
+# Agent/optimizer artifacts
+.agent/
+.optimizer/

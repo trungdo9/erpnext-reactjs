@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(# Get Bao Cao Bep sample curl -s -b /tmp/cookies_agent3.txt \"\"http://localhost:8081/api/resource/Bao%20Cao%20Bep/BC-2026-0001\"\")",
+      "Bash(# Get item groups distribution curl -s -b /tmp/cookies_agent2.txt \"\"http://localhost:8081/api/resource/Item?filters=%5B%5B%22item_group%22%2C%22in%22%2C%22R%E1%BA%A1u%20c%E1%BB%A7%2CTh%E1%BB%8Bt%20heo%2CTh%E1%BB%8Bt%20g%C3%A0%2CTh%E1%BB%8Bt%20b%C3%B2%2CH%E1%BA%A3i%20s%E1%BA%A3n%2CGia%20v%E1%BB%8B%2C%C4%90%E1%BB%93%20kh%C3%B4%2CCh%E1%BA%A3%2CTr%E1%BB%A9ng%2CTh%E1%BB%8Bt%20kh%C3%A1c%2CKh%C3%A1c%22%5D%5D&fields=%5B%22item_group%22%5D&limit_page_length=500\"\")",
+      "Bash(# Check if Ke Hoach Nguyen Lieu exists curl -s -b /tmp/cookies_agent3.txt \"\"http://localhost:8081/api/resource/DocType/Ke%20Hoach%20Nguyen%20Lieu\"\")",
+      "Bash(# Get some ingredient items with their prices curl -s -b /tmp/cookies_agent2.txt \"\"http://localhost:8081/api/resource/Item?filters=%5B%5B%22item_group%22%2C%22in%22%2C%22Th%E1%BB%8Bt%20heo%2CTh%E1%BB%8Bt%20g%C3%A0%2CTh%E1%BB%8Bt%20b%C3%B2%2CH%E1%BA%A3i%20s%E1%BA%A3n%22%5D%5D&fields=%5B%22name%22%2C%22item_name%22%2C%22item_group%22%2C%22valuation_rate%22%2C%22stock_uom%22%5D&limit_page_length=30\"\")",
+      "Bash(# The DKSA has NO chi_tiet. Let me investigate structure more carefully. # Also check ghi_chu field - DKSA might store the meal count differently # First check if DKSA has a field we missed curl -s -b /tmp/cookies_agent3.txt \"\"http://localhost:8081/api/resource/DocType/Dang%20Ky%20Suat%20An\"\")",
+      "Bash(# Check what api update_bom_items does - look for the server script curl -s -b /tmp/cookies_agent2.txt \"\"http://localhost:8081/api/resource/Server%20Script?filters=%5B%5B%22name%22%2C%22like%22%2C%22%25bom%25%22%5D%5D&fields=%5B%22name%22%2C%22script_type%22%2C%22reference_doctype%22%2C%22api_method%22%5D&limit_page_length=10\"\")",
+      "Bash(# DKSA has chi_tiet as child. Let me check the child table directly curl -s -b /tmp/cookies_agent3.txt \"\"http://localhost:8081/api/resource/Dang%20Ky%20Suat%20An%20Chi%20Tiet?fields=%5B%22name%22%2C%22parent%22%2C%22bua%22%2C%22thuc_don%22%2C%22so_suat%22%5D&filters=%5B%5B%22parent%22%2C%22%3D%22%2C%22DK-2026-0003%22%5D%5D&limit_page_length=20\"\")",
+      "Bash(# Check which DKSA records have data curl -s -b /tmp/cookies_agent3.txt \"\"http://localhost:8081/api/resource/Dang%20Ky%20Suat%20An%20Chi%20Tiet?fields=%5B%22name%22%2C%22parent%22%2C%22bua%22%2C%22thuc_don%22%2C%22so_suat%22%5D&limit_page_length=30\"\")",
+      "Bash(# Get full DKSA chi_tiet with all fields curl -s -b /tmp/cookies_agent3.txt \"\"http://localhost:8081/api/resource/Dang%20Ky%20Suat%20An%20Chi%20Tiet/ndeb75nqqg\"\")",
+      "Bash(# Summary stats: count BOMs with items, total_cost distribution curl -s -b /tmp/cookies_agent2.txt \"\"http://localhost:8081/api/resource/BOM?filters=%5B%5B%22docstatus%22%2C%22%3D%22%2C%221%22%5D%2C%5B%22is_active%22%2C%22%3D%22%2C%221%22%5D%2C%5B%22name%22%2C%22like%22%2C%22BOM-MA%25%22%5D%5D&fields=%5B%22name%22%2C%22item_name%22%2C%22total_cost%22%2C%22raw_material_cost%22%5D&limit_page_length=60\"\")",
+      "Bash(# Get more BOM samples for different dishes curl -s -b /tmp/cookies_agent3.txt \"\"http://localhost:8081/api/resource/BOM/BOM-MA031-001-1\"\")",
+      "Bash(# How many total BOM records are there and what are the active ones? curl -s -b /tmp/cookies_agent3.txt \"\"http://localhost:8081/api/resource/BOM?fields=%5B%22name%22%2C%22item%22%2C%22item_name%22%2C%22quantity%22%2C%22uom%22%2C%22total_cost%22%2C%22docstatus%22%2C%22is_active%22%2C%22is_default%22%5D&filters=%5B%5B%22docstatus%22%2C%22%3D%22%2C%221%22%5D%5D&limit_page_length=100&order_by=name+asc\"\")",
+      "Bash(# Now let''s understand the FULL DKSA structure - the old ones \\(Jan 26\\) seem to have no bua/chi_tiet # That might be the previous design where DKSA was flat \\(just total per kitchen per day\\) # The new design has chi_tiet with bua+thuc_don+so_suat # Let''s check a new DKSA record from Feb curl -s -b /tmp/cookies_agent3.txt \"\"http://localhost:8081/api/resource/Dang%20Ky%20Suat%20An/DK-2026-0032\"\")",
+      "Bash(# Read the frontend pages cat \"\"d:/ai/erp-frontend/src/pages/KitchenReport.jsx\"\")",
+      "Bash(//home//frappe//frappe-bench//env//bin//python test_api_external.py)",
+      "Bash(# Now check the Thuc Don Tuan structure curl -s -b /tmp/cookies_agent3.txt \"\"http://localhost:8081/api/resource/DocType/Thuc%20Don%20Tuan\"\")",
+      "Bash(# Check existing reports in ERPNext curl -s -b /tmp/cookies_agent3.txt \"\"http://localhost:8081/api/resource/Report?fields=%5B%22name%22%2C%22report_name%22%2C%22report_type%22%2C%22ref_doctype%22%2C%22module%22%5D&filters=%5B%5B%22module%22%2C%22in%22%2C%22Stock%2CCanteen%22%5D%5D&limit_page_length=50\"\")",
+      "Bash(# Check the 4 canteen Script Reports mentioned in MEMORY curl -s -b /tmp/cookies_agent3.txt \"\"http://localhost:8081/api/resource/Report?fields=%5B%22name%22%2C%22report_name%22%2C%22report_type%22%2C%22ref_doctype%22%5D&filters=%5B%5B%22name%22%2C%22like%22%2C%22%25Bep%25%22%5D%5D&limit_page_length=20\"\")",
+      "Bash(# Check all custom reports created in the system curl -s -b /tmp/cookies_agent3.txt \"\"http://localhost:8081/api/resource/Report?fields=%5B%22name%22%2C%22report_type%22%2C%22ref_doctype%22%2C%22is_standard%22%5D&filters=%5B%5B%22is_standard%22%2C%22%3D%22%2C%22No%22%5D%5D&limit_page_length=50\"\")",
+      "Bash(# Check the WeeklyMenuBuilder page \\(main menu building page\\) find /d/ai/erp-frontend/src -name \"\"*.jsx\"\" | xargs grep -l \"\"Thuc Don\\\\|thuc_don\\\\|WeeklyMenu\\\\|ThucDon\"\")",
+      "Bash(\"d:/tmp/read_script.py\":*)",
+      "Bash(\"d:/tmp/check_dksa2.py\":*)",
+      "Bash(\"d:/tmp/fix_ingredient_plan.py\":*)",
+      "Bash(\"d:/tmp/verify_script.py\":*)",
+      "Bash(\"d:/tmp/test_api.py\":*)",
+      "Bash(\"d:/tmp/test_api2.py\":*)",
+      "Bash(\"d:/tmp/test_api3.py\":*)"
+    ]
+  }
+}
