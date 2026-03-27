@@ -27,7 +27,7 @@
     "frappe-react-sdk": "^1.14.0",
     "html5-qrcode": "^2.3.8",
     "lottie-react": "^2.4.1",
-    "lucide-react": "^0.563.0",
+    "lucide-react": "^1.7.0",
     "prop-types": "^15.8.1",
     "qrcode.react": "^4.2.0",
     "react": "^19.2.0",
