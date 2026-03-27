@@ -17,6 +17,7 @@
  */
 
 import { create } from 'zustand';
+import { tokenService } from '../auth/tokenService';
 
 const useAuthStore = create((set, get) => ({
     /** Whether a valid user session exists */
@@ -30,6 +31,18 @@ const useAuthStore = create((set, get) => ({
      * Consumers can use this to avoid flickering on app load.
      */
     sessionChecked: false,
+
+    /**
+     * Current auth mode: 'token' for API key/secret, 'session' for cookie-based.
+     * Initialized from localStorage so it survives page reloads.
+     */
+    authMode: tokenService.getMode() ?? 'session',
+
+    /**
+     * Update the auth mode. Called by AuthContext after login/logout.
+     * @param {'token'|'session'} mode
+     */
+    setAuthMode: (mode) => set({ authMode: mode }),
 
     /**
      * Set current user and mark session as authenticated.

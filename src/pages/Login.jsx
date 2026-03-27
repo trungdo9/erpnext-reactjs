@@ -9,7 +9,7 @@ import { APP_CONFIG } from '../config/app';
 import PWAInstallPrompt from '../components/ui/PWAInstallPrompt';
 import { usePWAInstall } from '../hooks/usePWAInstall';
 import { AuthService } from '../api/domains/authService';
-import { Download, ArrowLeft, UserPlus, Search, Eye, EyeOff, CheckCircle } from 'lucide-react';
+import { Download, ArrowLeft, UserPlus, Search, Eye, EyeOff, CheckCircle, KeyRound } from 'lucide-react';
 import slide1 from '../assets/slide-1.jpg';
 
 // ═══════════════════════════════════════════════════════════════
@@ -701,6 +701,10 @@ const Login = () => {
     const [rememberMe, setRememberMe] = useState(false);
     const [errorObj, setErrorObj] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [loginMode, setLoginMode] = useState('password');
+    const [apiKey, setApiKey] = useState('');
+    const [apiSecret, setApiSecret] = useState('');
+    const [showApiSecret, setShowApiSecret] = useState(false);
     const [authView, setAuthView] = useState('login');
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [modalAuthView, setModalAuthView] = useState('login');
@@ -730,7 +734,7 @@ const Login = () => {
         if (saved) { setUsername(saved); setRememberMe(true); }
     }, []);
 
-    const { login, isAuthenticated } = useAuth();
+    const { login, loginWithToken, isAuthenticated } = useAuth();
     const { t } = useTranslation();
     const { canInstall, isInstalled, install } = usePWAInstall();
     const navigate = useNavigate();
@@ -769,52 +773,100 @@ const Login = () => {
         finally { setIsLoading(false); }
     };
 
+    const handleTokenSubmit = async (e) => {
+        e.preventDefault(); setErrorObj(null); setIsLoading(true);
+        try {
+            await loginWithToken(apiKey.trim(), apiSecret.trim());
+            navigate(from, { replace: true });
+        } catch (err) { console.error(err); setErrorObj(t('auth.token.error')); }
+        finally { setIsLoading(false); }
+    };
+
     const loginFormContent = (idPrefix, viewSetter) => (
         <>
             <h2 className={`text-xl font-semibold mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>{t('auth.login.title')}</h2>
-            <p className={`text-sm mb-6 ${isDark ? 'text-white/60' : 'text-gray-500'}`}>{t('auth.login.subtitle')}</p>
-            <form onSubmit={handleSubmit}>
-                <GlowInput label={t('auth.username')} id={`${idPrefix}-username`} isDark={isDark} type="text"
-                    value={username} onChange={(e) => setUsername(e.target.value)}
-                    placeholder={t('auth.username.placeholder')} autoComplete="username" required />
-                <GlowInput label={t('auth.password')} id={`${idPrefix}-password`} isDark={isDark}
-                    type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)}
-                    placeholder={t('auth.password.placeholder')} autoComplete="current-password" required>
-                    <button type="button" onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? 'Hide password' : 'Show password'}
-                        className={`absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded transition-colors cursor-pointer ${isDark ? 'text-white/45 hover:text-white/70' : 'text-gray-400 hover:text-gray-600'}`}>
-                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                    </button>
-                </GlowInput>
-                <div className="flex flex-wrap justify-between items-center mb-5 gap-2">
-                    <label className="flex items-center gap-2 cursor-pointer select-none group">
-                        <input type="checkbox" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)}
-                            className={`w-4 h-4 rounded focus:ring-offset-0 ${isDark ? 'border-white/20 bg-white/5' : 'border-gray-300 bg-white'}`}
-                            style={{ accentColor: C.coral }} />
-                        <span className={`text-sm transition-colors ${isDark ? 'text-white/60 group-hover:text-white/70' : 'text-gray-500 group-hover:text-gray-700'}`}>{t('auth.remember_me')}</span>
-                    </label>
-                    <button type="button" onClick={() => viewSetter('forgot-password')}
-                        className={`text-sm transition-colors cursor-pointer ${isDark ? 'text-white/50 hover:text-white/70' : 'text-gray-400 hover:text-gray-600'}`}>{t('auth.forgot_password')}</button>
-                </div>
-                {errorObj && <div className={`mb-4 px-3 py-2.5 rounded-lg text-sm ${isDark ? 'bg-red-500/15 border border-red-500/25 text-red-300' : 'bg-red-50 border border-red-200 text-red-600'}`}>{errorObj}</div>}
-                <PremiumButton isLoading={isLoading} disabled={isLoading}>{t('auth.login_button')}</PremiumButton>
-                <div className="mt-4 text-center">
-                    <span className={`text-sm ${isDark ? 'text-white/55' : 'text-gray-400'}`}>{t('auth.no_account')} </span>
-                    <button type="button" onClick={() => viewSetter('register')}
-                        className="text-sm transition-colors cursor-pointer font-medium" style={{ color: C.cyan }}>
-                        {t('auth.create_account')}
-                    </button>
-                </div>
-                {import.meta.env.VITE_DEMO_MODE === 'true' && (
-                    <button type='button' onClick={async () => {
-                        setErrorObj(null); setIsLoading(true);
-                        try { await login('demo', 'demo', false); } catch { setErrorObj(null); }
-                        finally { setIsLoading(false); }
-                    }}
-                    className={`w-full mt-3 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer border ${isDark ? 'border-white/15 text-white/70 hover:bg-white/10' : 'border-gray-300 text-gray-600 hover:bg-gray-100'}`}>
-                        {t('auth.demo_button', 'Vào xem Demo')}
-                    </button>
-                )}
-            </form>
+            <p className={`text-sm mb-4 ${isDark ? 'text-white/60' : 'text-gray-500'}`}>{t('auth.login.subtitle')}</p>
+
+            {/* Login mode tab switcher */}
+            <div className={`flex rounded-lg p-0.5 mb-5 ${isDark ? 'bg-white/5' : 'bg-gray-100'}`}>
+                <button type="button" onClick={() => { setLoginMode('password'); setErrorObj(null); }}
+                    className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-md text-sm font-medium transition-all cursor-pointer ${loginMode === 'password'
+                        ? (isDark ? 'bg-white/10 text-white shadow-sm' : 'bg-white text-gray-900 shadow-sm')
+                        : (isDark ? 'text-white/50 hover:text-white/70' : 'text-gray-500 hover:text-gray-700')}`}>
+                    <Eye className="w-3.5 h-3.5" />{t('auth.tab.password')}
+                </button>
+                <button type="button" onClick={() => { setLoginMode('token'); setErrorObj(null); }}
+                    className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-md text-sm font-medium transition-all cursor-pointer ${loginMode === 'token'
+                        ? (isDark ? 'bg-white/10 text-white shadow-sm' : 'bg-white text-gray-900 shadow-sm')
+                        : (isDark ? 'text-white/50 hover:text-white/70' : 'text-gray-500 hover:text-gray-700')}`}>
+                    <KeyRound className="w-3.5 h-3.5" />{t('auth.tab.token')}
+                </button>
+            </div>
+
+            {loginMode === 'password' ? (
+                <form onSubmit={handleSubmit}>
+                    <GlowInput label={t('auth.username')} id={`${idPrefix}-username`} isDark={isDark} type="text"
+                        value={username} onChange={(e) => setUsername(e.target.value)}
+                        placeholder={t('auth.username.placeholder')} autoComplete="username" required />
+                    <GlowInput label={t('auth.password')} id={`${idPrefix}-password`} isDark={isDark}
+                        type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)}
+                        placeholder={t('auth.password.placeholder')} autoComplete="current-password" required>
+                        <button type="button" onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? 'Hide password' : 'Show password'}
+                            className={`absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded transition-colors cursor-pointer ${isDark ? 'text-white/45 hover:text-white/70' : 'text-gray-400 hover:text-gray-600'}`}>
+                            {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                        </button>
+                    </GlowInput>
+                    <div className="flex flex-wrap justify-between items-center mb-5 gap-2">
+                        <label className="flex items-center gap-2 cursor-pointer select-none group">
+                            <input type="checkbox" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)}
+                                className={`w-4 h-4 rounded focus:ring-offset-0 ${isDark ? 'border-white/20 bg-white/5' : 'border-gray-300 bg-white'}`}
+                                style={{ accentColor: C.coral }} />
+                            <span className={`text-sm transition-colors ${isDark ? 'text-white/60 group-hover:text-white/70' : 'text-gray-500 group-hover:text-gray-700'}`}>{t('auth.remember_me')}</span>
+                        </label>
+                        <button type="button" onClick={() => viewSetter('forgot-password')}
+                            className={`text-sm transition-colors cursor-pointer ${isDark ? 'text-white/50 hover:text-white/70' : 'text-gray-400 hover:text-gray-600'}`}>{t('auth.forgot_password')}</button>
+                    </div>
+                    {errorObj && <div className={`mb-4 px-3 py-2.5 rounded-lg text-sm ${isDark ? 'bg-red-500/15 border border-red-500/25 text-red-300' : 'bg-red-50 border border-red-200 text-red-600'}`}>{errorObj}</div>}
+                    <PremiumButton isLoading={isLoading} disabled={isLoading}>{t('auth.login_button')}</PremiumButton>
+                    <div className="mt-4 text-center">
+                        <span className={`text-sm ${isDark ? 'text-white/55' : 'text-gray-400'}`}>{t('auth.no_account')} </span>
+                        <button type="button" onClick={() => viewSetter('register')}
+                            className="text-sm transition-colors cursor-pointer font-medium" style={{ color: C.cyan }}>
+                            {t('auth.create_account')}
+                        </button>
+                    </div>
+                    {import.meta.env.VITE_DEMO_MODE === 'true' && (
+                        <button type='button' onClick={async () => {
+                            setErrorObj(null); setIsLoading(true);
+                            try { await login('demo', 'demo', false); } catch { setErrorObj(null); }
+                            finally { setIsLoading(false); }
+                        }}
+                        className={`w-full mt-3 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer border ${isDark ? 'border-white/15 text-white/70 hover:bg-white/10' : 'border-gray-300 text-gray-600 hover:bg-gray-100'}`}>
+                            {t('auth.demo_button', 'Vào xem Demo')}
+                        </button>
+                    )}
+                </form>
+            ) : (
+                <form onSubmit={handleTokenSubmit}>
+                    <div className={`mb-4 px-3 py-2.5 rounded-lg text-xs flex items-start gap-2 ${isDark ? 'bg-white/5 border border-white/10 text-white/50' : 'bg-blue-50 border border-blue-100 text-blue-600'}`}>
+                        <KeyRound className="w-3.5 h-3.5 mt-0.5 shrink-0" />
+                        <span>{t('auth.token.hint')}</span>
+                    </div>
+                    <GlowInput label={t('auth.token.api_key')} id={`${idPrefix}-api-key`} isDark={isDark} type="text"
+                        value={apiKey} onChange={(e) => setApiKey(e.target.value)}
+                        placeholder={t('auth.token.api_key_placeholder')} autoComplete="off" required />
+                    <GlowInput label={t('auth.token.api_secret')} id={`${idPrefix}-api-secret`} isDark={isDark}
+                        type={showApiSecret ? 'text' : 'password'} value={apiSecret} onChange={(e) => setApiSecret(e.target.value)}
+                        placeholder={t('auth.token.api_secret_placeholder')} autoComplete="off" required>
+                        <button type="button" onClick={() => setShowApiSecret(!showApiSecret)} aria-label={showApiSecret ? 'Hide secret' : 'Show secret'}
+                            className={`absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded transition-colors cursor-pointer ${isDark ? 'text-white/45 hover:text-white/70' : 'text-gray-400 hover:text-gray-600'}`}>
+                            {showApiSecret ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                        </button>
+                    </GlowInput>
+                    {errorObj && <div className={`mb-4 px-3 py-2.5 rounded-lg text-sm ${isDark ? 'bg-red-500/15 border border-red-500/25 text-red-300' : 'bg-red-50 border border-red-200 text-red-600'}`}>{errorObj}</div>}
+                    <PremiumButton isLoading={isLoading} disabled={isLoading}>{t('auth.token.submit')}</PremiumButton>
+                </form>
+            )}
         </>
     );
 

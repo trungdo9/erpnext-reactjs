@@ -10,7 +10,8 @@
 
 import { createContext, useState, useEffect, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { auth as frappeAuth, call as frappeCall, db, syncCsrfToken, fetchCsrfToken } from '../api/frappeClient';
+import { auth as frappeAuth, call as frappeCall, db, syncCsrfToken, fetchCsrfToken, validateApiToken } from '../api/frappeClient';
+import { tokenService } from './tokenService';
 import { usePersonaStore } from '../stores';
 import useAuthStore from '../stores/useAuthStore';
 import { useTranslation } from '../hooks/useTranslation';
@@ -52,6 +53,7 @@ const defaultUserState = {
 export const AuthContext = createContext({
     ...defaultUserState,
     login: async () => { },
+    loginWithToken: async () => { },
     logout: async () => { },
     refreshUser: async () => { },
     updateProfile: async () => { },
@@ -364,6 +366,10 @@ export const AuthProvider = ({ children }) => {
                 throw new Error('Failed to fetch user profile after login');
             }
 
+            // Save session auth to tokenService
+            tokenService.setSessionAuth(profile);
+            useAuthStore.getState().setAuthMode('session');
+
             // Step 3: Update state with server data
             const newState = {
                 userId: profile.email,
@@ -396,6 +402,53 @@ export const AuthProvider = ({ children }) => {
     }, [fetchUserProfile, t]);
 
     /**
+     * Login with API key and secret (token-based auth)
+     */
+    const loginWithToken = useCallback(async (apiKey, apiSecret) => {
+        authLog(`Token login attempt`);
+        setUserState(prev => ({ ...prev, isLoading: true }));
+        setError(null);
+
+        try {
+            // Step 1: Validate API credentials
+            const userDoc = await validateApiToken(apiKey, apiSecret);
+            if (!userDoc) throw new Error('Invalid API credentials');
+
+            // Step 2: Store token BEFORE profile fetch so SDK uses it
+            tokenService.setTokenAuth(apiKey, apiSecret, { name: userDoc.name });
+
+            // Step 3: Build profile
+            const profile = transformUserDoc(userDoc);
+            if (!profile) throw new Error('Failed to build user profile');
+
+            // Step 4: Update state
+            const newState = {
+                userId: profile.email,
+                fullName: profile.fullName,
+                email: profile.email,
+                avatar: profile.avatar,
+                roles: profile.roles,
+                isLoading: false,
+                isAuthenticated: true,
+                profile,
+            };
+            setUserState(newState);
+            tokenService.setTokenAuth(apiKey, apiSecret, profile); // update with full profile
+            useAuthStore.getState().setAuthMode('token');
+            useAuthStore.getState().setUser(profile);
+            usePersonaStore.getState().detectFromRoles(profile.roles);
+            authLog('Token login complete', { userId: profile.email });
+            return profile;
+        } catch (err) {
+            authLog('Token login failed', err);
+            setError(err);
+            setUserState(prev => ({ ...prev, isLoading: false }));
+            tokenService.clear(); // cleanup on failure
+            throw err;
+        }
+    }, [transformUserDoc]);
+
+    /**
      * Logout current user
      */
     const logout = useCallback(async () => {
@@ -408,7 +461,11 @@ export const AuthProvider = ({ children }) => {
         } catch (err) {
             authLog('Logout API failed (will clear state anyway)', err);
         } finally {
+            // Clear stale CSRF token so next login fetches a fresh one
+            window.csrf_token = null;
+            tokenService.clear();
             clearAuthState('user_logout');
+            useAuthStore.getState().setAuthMode('session');
         }
     }, [clearAuthState]);
 
@@ -474,8 +531,12 @@ export const AuthProvider = ({ children }) => {
         // Legacy support: currentUser as string (email) for backward compatibility
         currentUser: userState.userId,
 
+        // Current auth mode ('token' | 'session' | null)
+        authMode: tokenService.getMode() ?? 'session',
+
         // Actions
         login,
+        loginWithToken,
         logout,
         refreshUser,
         updateProfile,

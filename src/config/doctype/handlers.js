@@ -26,7 +26,7 @@ export function getFieldChangeAutoSets(doctype) {
 }
 
 export function getDynamicReadOnlyFields(doctype) {
-    return DYNAMIC_READONLY_FIELDS[doctype] || null;
+    return DYNAMIC_READONLY_FIELDS[doctype] || [];
 }
 
 export function getLinkFieldFilter(doctype, fieldname) {

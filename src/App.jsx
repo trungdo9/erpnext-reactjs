@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import router from './router';
 import { AuthProvider } from './auth/AuthContext';
+import { FrappeWrapper } from './auth/FrappeWrapper';
 import ErrorBoundary from './components/common/ErrorBoundary';
 import Toaster from './components/ui/Toaster';
 
@@ -62,10 +63,12 @@ const App = () => {
 
     return (
         <ErrorBoundary>
-            <AuthProvider>
-                <RouterProvider router={router} />
-                <Toaster />
-            </AuthProvider>
+            <FrappeWrapper>
+                <AuthProvider>
+                    <RouterProvider router={router} />
+                    <Toaster />
+                </AuthProvider>
+            </FrappeWrapper>
         </ErrorBoundary>
     );
 };
