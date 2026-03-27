@@ -33,7 +33,8 @@ const COLORS = [
 
 function getCsrfToken() {
     const match = document.cookie.match(/csrf_token=([^;]+)/);
-    return match ? decodeURIComponent(match[1]) : '';
+    if (match) return decodeURIComponent(match[1]);
+    return window.csrf_token || '';
 }
 
 async function fetchDoc(doctype, name) {

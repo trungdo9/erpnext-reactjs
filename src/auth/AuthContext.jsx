@@ -350,9 +350,10 @@ export const AuthProvider = ({ children }) => {
                 ),
             ]);
 
-            // Re-sync CSRF token after login (Frappe issues new token)
+            // Re-sync CSRF token after login (Frappe issues new token).
+            // Force re-fetch to avoid using a stale token from a previous session.
             syncCsrfToken();
-            await fetchCsrfToken();
+            await fetchCsrfToken(true);
 
             authLog('Login API successful, fetching user profile...');
 

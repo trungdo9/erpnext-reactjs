@@ -18,6 +18,8 @@ const Card = ({
     variant = 'default',
     // eslint-disable-next-line no-unused-vars
     accent = false,
+    // eslint-disable-next-line no-unused-vars
+    interactive = false,
     noPadding = false,
     ...props
 }) => {

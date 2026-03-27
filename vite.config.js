@@ -5,32 +5,33 @@ export default defineConfig(({ mode }) => ({
   base: '/',
   plugins: [react()],
   server: {
+    host: '0.0.0.0',
     port: 5174,
     strictPort: true,
-    allowedHosts: ['erp.snuol.com.vn', 'localhost'],
+    allowedHosts: ['192.168.180.68', 'localhost'],
     hmr: {
-      host: 'erp.snuol.com.vn',
-      port: 443,
-      protocol: 'wss',
+      host: '192.168.180.68',
+      port: 5174,
+      protocol: 'ws',
     },
     proxy: {
       '/api': {
-        target: 'http://localhost:8082',
+        target: 'http://192.168.180.68:8080',
         changeOrigin: true,
         secure: false,
       },
       '/files': {
-        target: 'http://localhost:8082',
+        target: 'http://192.168.180.68:8080',
         changeOrigin: true,
         secure: false,
       },
       '/private': {
-        target: 'http://localhost:8082',
+        target: 'http://192.168.180.68:8080',
         changeOrigin: true,
         secure: false,
       },
       '/socket.io': {
-        target: 'http://localhost:8082',
+        target: 'http://192.168.180.68:8080',
         changeOrigin: true,
         ws: true,
       },

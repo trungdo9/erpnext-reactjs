@@ -31,25 +31,33 @@ function syncCsrfToken() {
 }
 
 /**
- * Fetch CSRF token from Frappe backend HTML page (Frappe v16).
+ * Fetch CSRF token from Frappe backend (Frappe v15/v16).
  * Must be called before the first POST request.
+ *
+ * @param {boolean} force - Force re-fetch even if token already cached (use after login/logout)
  */
-async function fetchCsrfToken() {
-  if (window.csrf_token && window.csrf_token !== '{{ csrf_token }}') return;
+async function fetchCsrfToken(force = false) {
+  if (!force && window.csrf_token && window.csrf_token !== '{{ csrf_token }}') return;
   try {
-    const resp = await fetch('/api/method/frappe.auth.get_logged_in_user', { credentials: 'include' });
-    // The CSRF token is in the response cookie or we fetch from HTML
-    const match2 = document.cookie.match(/csrf_token=([^;]+)/);
-    if (match2) {
-      window.csrf_token = decodeURIComponent(match2[1]);
+    // Any GET request to Frappe returns X-Frappe-CSRF-Token in headers.
+    // NOTE: Frappe v16 renamed get_logged_in_user → get_logged_user
+    const resp = await fetch('/api/method/frappe.auth.get_logged_user', { credentials: 'include' });
+
+    // 1. Try cookie (Frappe v15 sets csrf_token as a readable cookie)
+    const cookieMatch = document.cookie.match(/csrf_token=([^;]+)/);
+    if (cookieMatch) {
+      window.csrf_token = decodeURIComponent(cookieMatch[1]);
+      if (import.meta.env.DEV) console.log('[FrappeClient] CSRF token from cookie:', window.csrf_token);
       return;
     }
-    // Fallback: fetch the desk page to get csrf_token from HTML
-    const htmlResp = await fetch('/', { credentials: 'include' });
-    const html = await htmlResp.text();
-    const m = html.match(/csrf_token\s*=\s*"([^"]+)"/);
-    if (m) {
-      window.csrf_token = m[1];
+
+    // 2. Read from response header — Frappe always includes this on authenticated responses
+    const headerToken = resp.headers.get('X-Frappe-CSRF-Token');
+    if (headerToken && headerToken !== 'fetch') {
+      window.csrf_token = headerToken;
+      if (import.meta.env.DEV) console.log('[FrappeClient] CSRF token from header: ok');
+    } else {
+      if (import.meta.env.DEV) console.log('[FrappeClient] CSRF token not available (unauthenticated or guest)');
     }
   } catch (e) {
     console.warn('[FrappeClient] Failed to fetch CSRF token:', e);
@@ -58,7 +66,7 @@ async function fetchCsrfToken() {
 
 // Sync on init (cookie check), then async fetch
 syncCsrfToken();
-fetchCsrfToken();
+await fetchCsrfToken();
 
 const frappe = new FrappeApp(frappeUrl, {
   useToken: false,
